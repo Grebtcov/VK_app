@@ -187,19 +187,35 @@ extension LoginViewController {
         var title = String()
         var message = String()
         
-        if loginTextField.text == "123", passwordTextField.text == "123456" {
-            title = "Добро пожаловать"
-            message = "Вы успешно вошли"
+        if loginTextField.text == "", passwordTextField.text == "" {
+            
+            // TODO: убрать в Root Navigation и через него контролировать жизненный цикл классов
+            let friendsTableViewController = FriendsTableViewController(style: .plain)
+            let groupsTableViewController = GroupsTableViewController()
+            
+            let friendsNavigationController = UINavigationController(rootViewController: friendsTableViewController)
+            let groupsNavigationController = UINavigationController(rootViewController: groupsTableViewController)
+            
+            let mainTabBarController = UITabBarController()
+            mainTabBarController.setViewControllers([friendsNavigationController, groupsNavigationController], animated: true)
+            
+            mainTabBarController.modalPresentationStyle = .overCurrentContext
+            groupsTableViewController.loadViewIfNeeded()
+            
+            present(mainTabBarController, animated: true, completion: nil)
+            
         } else {
             title = "Ошибка!"
             message = "Вы ввели не правильный логин и/или пароль"
+            let successAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAlertAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            successAlertController.addAction(okAlertAction)
+            
+            present(successAlertController, animated: true, completion: nil)
         }
         
         
-        let successAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAlertAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
-        successAlertController.addAction(okAlertAction)
-        present(successAlertController, animated: true, completion: nil)
+       
     }
     
     @objc func keyboardWasShown(notification: NSNotification) {
