@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1D536427EA48C000F2A0FD /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536327EA48C000F2A0FD /* FriendsTableViewController.swift */; };
+		8B1D536627EA596200F2A0FD /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536527EA596200F2A0FD /* GroupsTableViewController.swift */; };
+		8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */; };
+		8B1D536A27EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536927EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift */; };
 		8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB527D144AA002555F8 /* AppDelegate.swift */; };
 		8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB727D144AA002555F8 /* SceneDelegate.swift */; };
 		8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB927D144AA002555F8 /* LoginViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B1D536327EA48C000F2A0FD /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		8B1D536527EA596200F2A0FD /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
+		8B1D536927EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		8BD28DB227D144AA002555F8 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD28DB527D144AA002555F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD28DB727D144AA002555F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +47,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B1D536B27EC3CE800F2A0FD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8B1D536927EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift */,
+				8BD28DB927D144AA002555F8 /* LoginViewController.swift */,
+				8B1D536327EA48C000F2A0FD /* FriendsTableViewController.swift */,
+				8B1D536527EA596200F2A0FD /* GroupsTableViewController.swift */,
+				8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		8BD28DA927D144AA002555F8 = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +78,9 @@
 		8BD28DB427D144AA002555F8 /* VK_app */ = {
 			isa = PBXGroup;
 			children = (
+				8B1D536B27EC3CE800F2A0FD /* Controller */,
 				8BD28DB527D144AA002555F8 /* AppDelegate.swift */,
 				8BD28DB727D144AA002555F8 /* SceneDelegate.swift */,
-				8BD28DB927D144AA002555F8 /* LoginViewController.swift */,
 				8BD28DBB27D144AA002555F8 /* Main.storyboard */,
 				8BD28DC127D144AC002555F8 /* Assets.xcassets */,
 				8BD28DC327D144AC002555F8 /* LaunchScreen.storyboard */,
@@ -143,8 +163,12 @@
 			files = (
 				8BD28DC027D144AA002555F8 /* VK_app.xcdatamodeld in Sources */,
 				8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */,
+				8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */,
+				8B1D536627EA596200F2A0FD /* GroupsTableViewController.swift in Sources */,
 				8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */,
 				8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */,
+				8B1D536427EA48C000F2A0FD /* FriendsTableViewController.swift in Sources */,
+				8B1D536A27EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
