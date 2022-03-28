@@ -11,7 +11,8 @@ class FriendsTableViewController: UITableViewController {
     
     let tabBar = UITabBarController()
     
-    let masCell = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let frendsArray = Frends.masFrends
+    
     
     let cellIndetifier = "friendsCell"
 
@@ -26,7 +27,12 @@ extension FriendsTableViewController {
     
     func setupMainTableViewController() {
         view.backgroundColor = .white
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
+        
+        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIndetifier)
+        
+       // tableView.rowHeight = 150
+      // tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 44
         
         self.navigationItem.title = "Друзья"
         setupTabBar()
@@ -49,16 +55,21 @@ extension FriendsTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return masCell.count
+        return frendsArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath) as? FriendsAndGroupTableViewCell
 
-        cell.textLabel?.text = ("Друг - \(masCell[indexPath.row])")
-
-        return cell
+        cell?.nameLabel.text = ("\(frendsArray[indexPath.row].name) \(frendsArray[indexPath.row].lastName)")
+        
+        let avatarId = frendsArray[indexPath.row].avatar
+        let avatarPhoto = frendsArray[indexPath.row].photos[avatarId].photo
+        
+        cell?.profileImageView.image = UIImage(named: avatarPhoto)
+        
+        return cell ?? UITableViewCell()
     }
     
 }
@@ -69,8 +80,14 @@ extension FriendsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                layout.itemSize = CGSize(width: view.frame.width, height: 500)
         let detailFriendsCollectionViewController = DetailFriendsCollectionViewController(collectionViewLayout: layout)
-        detailFriendsCollectionViewController.titleDetail = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        
+        detailFriendsCollectionViewController.titleDetail = ("\(frendsArray[indexPath.row].name) \(frendsArray[indexPath.row].lastName)")
+        
+        detailFriendsCollectionViewController.photosArray = frendsArray[indexPath.row].photos
+        
         navigationController?.pushViewController(detailFriendsCollectionViewController, animated: true)
     }
     
