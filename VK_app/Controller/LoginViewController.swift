@@ -225,13 +225,15 @@ extension LoginViewController {
             if view.frame.width > view.frame.height {
                 //если клавиатура закроет элемент
                 if calculatedHeightLift + 30 > valueHeight.height {
-                    view.frame.origin.y = valueHeight.height - (self.calculatedHeightLift + 30)
+                    view.frame.origin.y = valueHeight.height - (self.calculatedHeightLift + 35)
                 }
             } else {
                 if calculatedHeightLift < valueHeight.height + 30 {
-                    view.frame.origin.y = self.calculatedHeightLift - (valueHeight.height + 30)
+                    view.frame.origin.y = self.calculatedHeightLift - (valueHeight.height + 35)
                 }
             }
+            print(valueHeight.height)
+            print(self.calculatedHeightLift)
         }
     }
     

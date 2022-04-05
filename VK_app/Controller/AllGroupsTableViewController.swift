@@ -9,8 +9,10 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
     
-    let masGroup = [1,2,3,4,5]
     let cellIdent = "cell"
+    let allGroupsArray = Frends.masAllGroups
+    var groupUser: [GroupModel]?
+    var clouser: ((GroupModel) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,7 @@ extension AllGroupsTableViewController {
     
     func setupMainTableViewController() {
         navigationItem.title = "Поиск групп"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdent)
+        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIdent)
         
     }
     
@@ -48,15 +50,50 @@ extension AllGroupsTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return masGroup.count
+        return allGroupsArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as? FriendsAndGroupTableViewCell
 
-        cell.textLabel?.text = "Группа - \(masGroup[indexPath.row])"
-
-        return cell
+        cell?.nameLabel.text = ("\(allGroupsArray[indexPath.row].name)")
+        
+        cell?.profileImageView.image = UIImage(named: allGroupsArray[indexPath.row].avatar.photo)
+        
+        return cell ?? UITableViewCell()
     }
     
+}
+
+// MARK: - Table view delegate
+extension AllGroupsTableViewController {
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        guard let groups = groupUser else {return nil}
+        
+        var isSubscribe = false
+        
+        for gr in groups where gr.name == allGroupsArray[indexPath.row].name {
+            isSubscribe = true
+        }
+        
+        if !isSubscribe {
+            let addAction = UIContextualAction(style: .normal, title: "подписаться") { _, _, complete in
+                
+                let group = self.allGroupsArray[indexPath.row]
+                self.clouser?(group)
+                self.groupUser?.append(group)
+                complete(true)
+            }
+            addAction.backgroundColor = .systemBlue
+            let configuration = UISwipeActionsConfiguration(actions: [addAction])
+            configuration.performsFirstActionWithFullSwipe = true
+            return configuration
+        }
+        
+        
+        
+        return nil
+    }
 }
