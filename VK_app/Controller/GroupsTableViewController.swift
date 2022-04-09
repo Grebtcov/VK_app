@@ -11,7 +11,7 @@ class GroupsTableViewController: UITableViewController {
     
     let cellIdent = "groupCell"
     
-    var groupsArray = Frends.masFrends[0].groups
+    var groupsArray = User.info.groups
     
 
     override func viewDidLoad() {
@@ -80,7 +80,7 @@ extension GroupsTableViewController {
 
         cell?.nameLabel.text = ("\(groupsArray[indexPath.row].name)")
         
-        cell?.profileImageView.image = UIImage(named: groupsArray[indexPath.row].avatar.photo)
+        cell?.avatarCustomView.profileImageView.image = UIImage(named: groupsArray[indexPath.row].avatar.photo)
         
         return cell ?? UITableViewCell()
     }

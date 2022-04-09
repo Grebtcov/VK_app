@@ -10,4 +10,10 @@ import Foundation
 struct PhotoModel {
     let photo: String
     let name: String
+    //Храним  ID пользователя который лайкнул фото
+    var peopleClickedLike: [String] = []
+    
+    var countLike: Int {
+        return peopleClickedLike.count
+    }
 }

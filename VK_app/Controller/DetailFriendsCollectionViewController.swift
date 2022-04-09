@@ -12,8 +12,8 @@ private let reuseIdentifier = "Cell"
 class DetailFriendsCollectionViewController: UICollectionViewController {
     
     var titleDetail: String?
+    var idUser: String?
     var photosArray: [PhotoModel]?
-    //var photoCollectionViewCell: PhotoCollectionViewCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,14 @@ extension DetailFriendsCollectionViewController {
             cell?.nameLabel.text = item.name
             
             cell?.photoImageView.image = UIImage(named: item.photo)
+            cell?.likeControl.countLike = item.countLike
+            for id in item.peopleClickedLike where id == idUser {
+                cell?.likeControl.isLike = true
+                break
+            }
         }
+        
+        
         
         return cell ?? UICollectionViewCell()
     }

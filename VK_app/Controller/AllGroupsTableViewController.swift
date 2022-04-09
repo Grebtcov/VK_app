@@ -58,7 +58,7 @@ extension AllGroupsTableViewController {
 
         cell?.nameLabel.text = ("\(allGroupsArray[indexPath.row].name)")
         
-        cell?.profileImageView.image = UIImage(named: allGroupsArray[indexPath.row].avatar.photo)
+        cell?.avatarCustomView.profileImageView.image = UIImage(named: allGroupsArray[indexPath.row].avatar.photo)
         
         return cell ?? UITableViewCell()
     }

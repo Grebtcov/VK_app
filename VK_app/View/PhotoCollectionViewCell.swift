@@ -11,6 +11,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     let photoImageView = UIImageView()
     let nameLabel = UILabel()
+    let likeControl = LikeCustomControl()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,9 +49,21 @@ extension PhotoCollectionViewCell {
         photoImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         photoImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -25).isActive = true
+    
+        photoImageView.isUserInteractionEnabled = true
         
+        photoImageView.addSubview(likeControl)
+        setupLikeView()
+    }
+    
+    func setupLikeView() {
+        likeControl.translatesAutoresizingMaskIntoConstraints = false
+        likeControl.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        likeControl.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-       
+        likeControl.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -10).isActive = true
+        likeControl.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: -10).isActive = true
+        
     }
     
     func setupNameLabel() {

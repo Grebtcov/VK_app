@@ -10,7 +10,7 @@ import UIKit
 class FriendsTableViewController: UITableViewController {
     
     let tabBar = UITabBarController()
-    
+    let IdUser = User.info.id_user
     let frendsArray = Frends.masFrends
     
     
@@ -29,10 +29,6 @@ extension FriendsTableViewController {
         view.backgroundColor = .white
         
         tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIndetifier)
-        
-       // tableView.rowHeight = 150
-      // tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 44
         
         self.navigationItem.title = "Друзья"
         setupTabBar()
@@ -67,7 +63,7 @@ extension FriendsTableViewController {
         let avatarId = frendsArray[indexPath.row].avatar
         let avatarPhoto = frendsArray[indexPath.row].photos[avatarId].photo
         
-        cell?.profileImageView.image = UIImage(named: avatarPhoto)
+        cell?.avatarCustomView.profileImageView.image = UIImage(named: avatarPhoto)
         
         return cell ?? UITableViewCell()
     }
@@ -87,6 +83,7 @@ extension FriendsTableViewController {
         detailFriendsCollectionViewController.titleDetail = ("\(frendsArray[indexPath.row].name) \(frendsArray[indexPath.row].lastName)")
         
         detailFriendsCollectionViewController.photosArray = frendsArray[indexPath.row].photos
+        detailFriendsCollectionViewController.idUser = IdUser
         
         navigationController?.pushViewController(detailFriendsCollectionViewController, animated: true)
     }

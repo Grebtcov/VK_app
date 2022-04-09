@@ -9,7 +9,9 @@ import UIKit
 
 class FriendsAndGroupTableViewCell: UITableViewCell {
     
-    let profileImageView = UIImageView()
+    
+    
+    let avatarCustomView = AvatarCustomView()
     let nameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,37 +44,30 @@ extension FriendsAndGroupTableViewCell {
     
     func setupMainTableViewCell() {
         
-        contentView.addSubview(profileImageView)
+        contentView.addSubview(avatarCustomView)
         contentView.addSubview(nameLabel)
         
     }
     
     func setupUIElements() {
         
-        setupProfileImageView()
+        setupAvatarCustomView()
         setupNameLabel()
         
     }
     
-    func setupProfileImageView() {
+    func setupAvatarCustomView() {
         
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarCustomView.translatesAutoresizingMaskIntoConstraints = false
         
-        let size: CGFloat = 50
+        avatarCustomView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        avatarCustomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        avatarCustomView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
         
-        profileImageView.heightAnchor.constraint(equalToConstant: size).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: size).isActive = true
-        
-        profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        profileImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
-        
-        profileImageView.layer.borderColor = UIColor.black.cgColor
-        profileImageView.layer.borderWidth = 1
-        
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = size / 2
+//        avatarCustomView.layer.shadowColor = UIColor.blue.cgColor
+//        avatarCustomView.layer.shadowRadius = 4
+//        avatarCustomView.layer.shadowOpacity = 1
+//        avatarCustomView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
     func setupNameLabel() {
@@ -82,8 +77,8 @@ extension FriendsAndGroupTableViewCell {
         nameLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
-        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 15).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: avatarCustomView.centerYAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: avatarCustomView.rightAnchor, constant: 15).isActive = true
         
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         nameLabel.textColor = .black
