@@ -10,7 +10,7 @@ import UIKit
 class FriendsAndGroupTableViewCell: UITableViewCell {
     
     
-    
+    let gradientLayer = CAGradientLayer()
     let avatarCustomView = AvatarCustomView()
     let nameLabel = UILabel()
     
@@ -25,18 +25,18 @@ class FriendsAndGroupTableViewCell: UITableViewCell {
             fatalError("init(coder:) has not been implemented")
         }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        
-        
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
+//
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//
+//
+//    }
 
 }
 
@@ -46,6 +46,9 @@ extension FriendsAndGroupTableViewCell {
         
         contentView.addSubview(avatarCustomView)
         contentView.addSubview(nameLabel)
+        
+        self.clipsToBounds = true
+        self.layer.insertSublayer(gradientLayer, at: 0)
         
     }
     
@@ -63,11 +66,6 @@ extension FriendsAndGroupTableViewCell {
         avatarCustomView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         avatarCustomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         avatarCustomView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
-        
-//        avatarCustomView.layer.shadowColor = UIColor.blue.cgColor
-//        avatarCustomView.layer.shadowRadius = 4
-//        avatarCustomView.layer.shadowOpacity = 1
-//        avatarCustomView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
     func setupNameLabel() {

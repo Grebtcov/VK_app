@@ -27,13 +27,15 @@ extension GroupsTableViewController {
     func setupMainTableViewController() {
         view.backgroundColor = .white
         
+        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIdent)
+        
         setupTabBar()
         setupNavigation()
         
     }
     
     func setupTabBar() {
-        let tabBarItem = UITabBarItem(title: "Группы", image: UIImage(systemName: "rectangle.3.group.fill"), tag: 1)
+        let tabBarItem = UITabBarItem(title: "Группы", image: UIImage(systemName: "rectangle.3.group.fill"), tag: 2)
         self.tabBarItem = tabBarItem
     }
     
@@ -42,8 +44,6 @@ extension GroupsTableViewController {
         
         let findGroupBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(onClickFindGroupBarButtonItem))
         navigationItem.setRightBarButton(findGroupBarButtonItem, animated: true)
-        
-        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIdent)
     }
     
     @objc func onClickFindGroupBarButtonItem() {
