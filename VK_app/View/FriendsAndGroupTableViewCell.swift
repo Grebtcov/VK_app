@@ -25,19 +25,6 @@ class FriendsAndGroupTableViewCell: UITableViewCell {
             fatalError("init(coder:) has not been implemented")
         }
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//
-//
-//    }
-
 }
 
 extension FriendsAndGroupTableViewCell {
@@ -71,9 +58,6 @@ extension FriendsAndGroupTableViewCell {
     func setupNameLabel() {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        nameLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
         nameLabel.centerYAnchor.constraint(equalTo: avatarCustomView.centerYAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: avatarCustomView.rightAnchor, constant: 15).isActive = true

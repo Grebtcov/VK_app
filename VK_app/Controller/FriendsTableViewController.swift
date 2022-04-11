@@ -85,7 +85,7 @@ extension FriendsTableViewController {
     }
     
     func setupTabBar() {
-        let tabBarItem = UITabBarItem(title: "Друзья", image: UIImage(systemName: "person.3.fill"), tag: 1)
+        let tabBarItem = UITabBarItem(title: "Друзья", image: UIImage(systemName: "person.3.fill"), tag: 0)
         self.tabBarItem = tabBarItem
     }
     

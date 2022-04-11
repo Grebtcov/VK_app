@@ -194,15 +194,16 @@ extension LoginViewController {
             let friendsTableViewController = FriendsTableViewController(style: .plain)
             let groupsTableViewController = GroupsTableViewController()
             
-            
+            let newsNavigationController = UINavigationController(rootViewController: newsTableViewController)
             let friendsNavigationController = UINavigationController(rootViewController: friendsTableViewController)
             let groupsNavigationController = UINavigationController(rootViewController: groupsTableViewController)
             
             let mainTabBarController = UITabBarController()
-            mainTabBarController.setViewControllers([friendsNavigationController, newsTableViewController, groupsNavigationController ], animated: true)
+            mainTabBarController.setViewControllers([friendsNavigationController, newsNavigationController, groupsNavigationController ], animated: true)
             
             mainTabBarController.modalPresentationStyle = .overCurrentContext
             mainTabBarController.selectedIndex = 1
+            
             friendsTableViewController.loadViewIfNeeded()
             groupsTableViewController.loadViewIfNeeded()
             

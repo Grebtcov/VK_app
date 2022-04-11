@@ -8,7 +8,7 @@
 import Foundation
 
 struct GroupModel {
+    var group_id: String = ""
     let avatar: PhotoModel
     let name: String
-    
 }
