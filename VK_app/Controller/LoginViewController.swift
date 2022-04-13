@@ -189,25 +189,12 @@ extension LoginViewController {
         
         if loginTextField.text == "", passwordTextField.text == "" {
             
-            // TODO: убрать в Root Navigation и через него контролировать жизненный цикл классов
-            let newsTableViewController = NewsTableViewController()
-            let friendsTableViewController = FriendsTableViewController(style: .plain)
-            let groupsTableViewController = GroupsTableViewController()
             
-            let newsNavigationController = UINavigationController(rootViewController: newsTableViewController)
-            let friendsNavigationController = UINavigationController(rootViewController: friendsTableViewController)
-            let groupsNavigationController = UINavigationController(rootViewController: groupsTableViewController)
             
-            let mainTabBarController = UITabBarController()
-            mainTabBarController.setViewControllers([friendsNavigationController, newsNavigationController, groupsNavigationController ], animated: true)
+            let loadViewController = LoadViewController()
+            loadViewController.modalPresentationStyle = .overCurrentContext
             
-            mainTabBarController.modalPresentationStyle = .overCurrentContext
-            mainTabBarController.selectedIndex = 1
-            
-            friendsTableViewController.loadViewIfNeeded()
-            groupsTableViewController.loadViewIfNeeded()
-            
-            present(mainTabBarController, animated: true, completion: nil)
+            present(loadViewController, animated: true, completion: nil)
             
         } else {
             title = "Ошибка!"

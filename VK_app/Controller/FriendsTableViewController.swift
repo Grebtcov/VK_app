@@ -14,6 +14,12 @@ class FriendsTableViewController: UITableViewController {
     let frendsArray = Frends.masFrends.sorted(by: {$0.lastName < $1.lastName})
     let cellIndetifier = "friendsCell"
     
+    
+    
+   
+    
+    
+    
     private let searchBar = UISearchBar()
     
     private var dicGroupIdFriendsInAlphabetical: [String:[Int]] = [:]
@@ -27,6 +33,8 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.isUserInteractionEnabled = true
         
         dicGroupIdFriendsInAlphabetical = groupIdFriendsInAlphabetical(frendsArray)
         
@@ -128,6 +136,7 @@ extension FriendsTableViewController {
             friend = filteredfrendsArray[index]
         }
         
+        
         cell.gradientLayer.colors = [startColorGradient.cgColor, endColorGradient.cgColor]
         cell.gradientLayer.frame = tableView.bounds
         cell.gradientLayer.startPoint = CGPoint.zero
@@ -162,6 +171,8 @@ extension FriendsTableViewController {
         if isSearch {
             friend = filteredfrendsArray[index]
         }
+        
+       
         
         detailFriendsCollectionViewController.titleDetail = ("\(friend.lastName) \(friend.name)")
         

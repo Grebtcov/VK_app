@@ -12,6 +12,13 @@ import UIKit
     let profileImageView = UIImageView()
     let shadowView = UIView()
     
+    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        recognizer.numberOfTapsRequired = 1
+        recognizer.numberOfTouchesRequired = 1
+        return recognizer
+        }()
+    
     @IBInspectable var sizeAvatar: CGFloat = 50 {
         didSet {
             setNeedsDisplay()
@@ -46,6 +53,7 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addGestureRecognizer(tapGestureRecognizer)
         setupAvatarCustomView()
         setupUIElements()
     }
@@ -110,6 +118,27 @@ extension AvatarCustomView {
         shadowView.layer.shadowOpacity = shadowOpacity
         shadowView.layer.shadowOffset = CGSize(width: shadowOffsetWidth, height: shadowOffsetHeight)
         
+    }
+    
+    @objc func onTap() {
+        
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: []) {
+            self.transform = CGAffineTransform(scaleX: 1, y: 0.8)
+        } completion: { _ in
+            UIView.animate(withDuration: 1,
+                           delay: 0,
+                           usingSpringWithDamping: 0.3,
+                           initialSpringVelocity: 0,
+                           options: []) {
+                self.transform = CGAffineTransform.identity
+            }
+        }
+        
+        
+        
+
     }
     
 }

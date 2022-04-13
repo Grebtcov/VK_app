@@ -12,6 +12,7 @@ class LikeCustomControl: UIControl {
     let size: CGFloat = 50
     let likeButton = UIButton(type: .custom)
     let countLikeLabel = UILabel()
+    
     var countLike = 0 {
         didSet {
             changeLike()
@@ -87,6 +88,22 @@ extension LikeCustomControl {
     }
     
     @objc func clickOn() {
+        
+        
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: []) {
+            self.likeButton.transform = CGAffineTransform(scaleX: 3, y: 3)
+        } completion: { _ in
+            UIView.animate(withDuration: 1,
+                           delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0,
+                           options: []) {
+                self.likeButton.transform = CGAffineTransform.identity
+            }
+        }
+        
         isLike.toggle()
         countLike = isLike ? countLike + 1 : countLike - 1
     }
