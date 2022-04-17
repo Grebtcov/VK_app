@@ -14,6 +14,8 @@ class DetailFriendsCollectionViewController: UICollectionViewController {
     var titleDetail: String?
     var idUser: String?
     var photosArray: [PhotoModel]?
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,3 +84,19 @@ extension DetailFriendsCollectionViewController {
     
     
 }
+
+// MARK: - Table Delegate
+extension DetailFriendsCollectionViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //guard let index = photosArray?[indexPath.row] else { return }
+        
+        let photoViewController = PhotoViewController()
+        photoViewController.photosArray = photosArray
+        photoViewController.idPhoto = indexPath.row
+        
+        navigationController?.pushViewController(photoViewController, animated: false)
+    }
+}
+

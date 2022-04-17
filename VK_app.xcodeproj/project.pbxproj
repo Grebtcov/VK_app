@@ -24,6 +24,7 @@
 		8B4B31042802E8BD0083A6BB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B31032802E8BD0083A6BB /* NewsTableViewCell.swift */; };
 		8B4B31062804D1390083A6BB /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B31052804D1390083A6BB /* NewsModel.swift */; };
 		8B4B310828071C580083A6BB /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310728071C580083A6BB /* LoadViewController.swift */; };
+		8B4B310A28077BAA0083A6BB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310928077BA90083A6BB /* PhotoViewController.swift */; };
 		8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB527D144AA002555F8 /* AppDelegate.swift */; };
 		8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB727D144AA002555F8 /* SceneDelegate.swift */; };
 		8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB927D144AA002555F8 /* LoginViewController.swift */; };
@@ -51,6 +52,7 @@
 		8B4B31032802E8BD0083A6BB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		8B4B31052804D1390083A6BB /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		8B4B310728071C580083A6BB /* LoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
+		8B4B310928077BA90083A6BB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		8BD28DB227D144AA002555F8 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD28DB527D144AA002555F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD28DB727D144AA002555F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */,
 				8B4B310128025CE20083A6BB /* NewsTableViewController.swift */,
 				8B4B310728071C580083A6BB /* LoadViewController.swift */,
+				8B4B310928077BA90083A6BB /* PhotoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				8B1D536F27ED5D1B00F2A0FD /* UserModel.swift in Sources */,
 				8B1D536A27EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift in Sources */,
 				8B4B31042802E8BD0083A6BB /* NewsTableViewCell.swift in Sources */,
+				8B4B310A28077BAA0083A6BB /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

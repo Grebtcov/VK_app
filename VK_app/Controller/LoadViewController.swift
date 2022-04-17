@@ -57,7 +57,7 @@ class LoadViewController: UIViewController {
             self.pointThree.alpha = 0
         }
         
-        let _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(presentMainTabBarController), userInfo: nil, repeats: false)
+        let _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(presentMainTabBarController), userInfo: nil, repeats: false)
         
         
     }
