@@ -24,14 +24,41 @@ class PhotoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
 
         navigationItem.title = "Все фотографии \(idPhoto)"
         tabBarController?.tabBar.isHidden = true
         
         
-        addPhoto()
         
-    }
+        addPhoto()
+        self.navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(back))
+        self.navigationItem.leftBarButtonItem = backButton
+        
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+            edgePan.edges = .left
+
+            view.addGestureRecognizer(edgePan)
+        }
+
+        @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+            if recognizer.state == .recognized {
+                popViewController()
+            }
+        }
+
+        @objc func back() {
+            popViewController()
+        }
+
+        func popViewController() {
+            let navigationControllerDelegate = NavigationControllerDelegate()
+            navigationController?.delegate = navigationControllerDelegate
+            
+            navigationController?.popViewController(animated: true)
+        }
     
     func addPhoto() {
         

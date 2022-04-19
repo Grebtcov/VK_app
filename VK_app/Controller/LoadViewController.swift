@@ -18,6 +18,8 @@ class LoadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         view.backgroundColor = .white
         
         view.addSubview(gorizontalStackView)
@@ -81,7 +83,8 @@ class LoadViewController: UIViewController {
         let mainTabBarController = UITabBarController()
         mainTabBarController.setViewControllers([friendsNavigationController, newsNavigationController, groupsNavigationController ], animated: true)
 
-        mainTabBarController.modalPresentationStyle = .overCurrentContext
+        mainTabBarController.modalPresentationStyle = .fullScreen
+        mainTabBarController.transitioningDelegate = self
         mainTabBarController.selectedIndex = 1
 
         friendsTableViewController.loadViewIfNeeded()
@@ -92,4 +95,15 @@ class LoadViewController: UIViewController {
     }
     
 
+}
+
+// MARK: TransitioningDelegate
+extension LoadViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionAnimator(isPresent: true, present: .modal)
+    }
+    
 }

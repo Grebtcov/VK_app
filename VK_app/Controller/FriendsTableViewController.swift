@@ -14,12 +14,6 @@ class FriendsTableViewController: UITableViewController {
     let frendsArray = Frends.masFrends.sorted(by: {$0.lastName < $1.lastName})
     let cellIndetifier = "friendsCell"
     
-    
-    
-   
-    
-    
-    
     private let searchBar = UISearchBar()
     
     private var dicGroupIdFriendsInAlphabetical: [String:[Int]] = [:]
@@ -178,6 +172,9 @@ extension FriendsTableViewController {
         
         detailFriendsCollectionViewController.photosArray = friend.photos
         detailFriendsCollectionViewController.idUser = IdUser
+        
+        let navigationControllerDelegate = NavigationControllerDelegate()
+        navigationController?.delegate = navigationControllerDelegate
         
         navigationController?.pushViewController(detailFriendsCollectionViewController, animated: true)
     }

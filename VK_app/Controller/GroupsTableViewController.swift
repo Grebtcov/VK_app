@@ -54,6 +54,10 @@ extension GroupsTableViewController {
             self?.tableView.reloadData()
         }
         allGroupTableViewController.groupUser = groupsArray
+        
+        let navigationControllerDelegate = NavigationControllerDelegate()
+        navigationController?.delegate = navigationControllerDelegate
+        
         navigationController?.pushViewController(allGroupTableViewController, animated: true)
     }
     

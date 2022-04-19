@@ -192,7 +192,8 @@ extension LoginViewController {
             
             
             let loadViewController = LoadViewController()
-            loadViewController.modalPresentationStyle = .overCurrentContext
+            loadViewController.modalPresentationStyle = .fullScreen
+            loadViewController.transitioningDelegate = self
             
             present(loadViewController, animated: true, completion: nil)
             
@@ -232,5 +233,16 @@ extension LoginViewController {
     @objc func hideKeyboard() {
             self.view.endEditing(true)
         }
+}
+
+// MARK: TransitioningDelegate
+extension LoginViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionAnimator(isPresent: true, present: .modal)
+    }
+    
 }
 
