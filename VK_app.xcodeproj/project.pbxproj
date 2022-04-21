@@ -27,6 +27,7 @@
 		8B4B310A28077BAA0083A6BB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310928077BA90083A6BB /* PhotoViewController.swift */; };
 		8B4B310C280F5A970083A6BB /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310B280F5A960083A6BB /* TransitionAnimator.swift */; };
 		8B4B310E280F66AA0083A6BB /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310D280F66AA0083A6BB /* NavigationControllerDelegate.swift */; };
+		8B4B31122811F9E70083A6BB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B31112811F9E70083A6BB /* Session.swift */; };
 		8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB527D144AA002555F8 /* AppDelegate.swift */; };
 		8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB727D144AA002555F8 /* SceneDelegate.swift */; };
 		8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB927D144AA002555F8 /* LoginViewController.swift */; };
@@ -57,6 +58,7 @@
 		8B4B310928077BA90083A6BB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		8B4B310B280F5A960083A6BB /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		8B4B310D280F66AA0083A6BB /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		8B4B31112811F9E70083A6BB /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		8BD28DB227D144AA002555F8 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD28DB527D144AA002555F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD28DB727D144AA002555F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				8B1D537027ED5D2F00F2A0FD /* GroupModel.swift */,
 				8B1D537427ED6F2800F2A0FD /* PhotoModel.swift */,
 				8B4B31052804D1390083A6BB /* NewsModel.swift */,
+				8B4B31112811F9E70083A6BB /* Session.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				8B4B30FC27FD3F0B0083A6BB /* AvatarCustomView.swift in Sources */,
 				8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */,
 				8B1D537A27EFD32600F2A0FD /* TestData.swift in Sources */,
+				8B4B31122811F9E70083A6BB /* Session.swift in Sources */,
 				8B1D537327ED6D4000F2A0FD /* FriendsAndGroupTableViewCell.swift in Sources */,
 				8B4B310828071C580083A6BB /* LoadViewController.swift in Sources */,
 				8B4B310228025CE20083A6BB /* NewsTableViewController.swift in Sources */,
