@@ -9,7 +9,9 @@ import UIKit
 
 class FriendsAndGroupTableViewCell: UITableViewCell {
     
-    let profileImageView = UIImageView()
+    
+    let gradientLayer = CAGradientLayer()
+    let avatarCustomView = AvatarCustomView()
     let nameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,67 +25,42 @@ class FriendsAndGroupTableViewCell: UITableViewCell {
             fatalError("init(coder:) has not been implemented")
         }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        
-        
-    }
-
 }
 
 extension FriendsAndGroupTableViewCell {
     
     func setupMainTableViewCell() {
         
-        contentView.addSubview(profileImageView)
+        contentView.addSubview(avatarCustomView)
         contentView.addSubview(nameLabel)
+        
+        self.clipsToBounds = true
+        self.layer.insertSublayer(gradientLayer, at: 0)
         
     }
     
     func setupUIElements() {
         
-        setupProfileImageView()
+        setupAvatarCustomView()
         setupNameLabel()
         
     }
     
-    func setupProfileImageView() {
+    func setupAvatarCustomView() {
         
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarCustomView.translatesAutoresizingMaskIntoConstraints = false
         
-        let size: CGFloat = 50
-        
-        profileImageView.heightAnchor.constraint(equalToConstant: size).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: size).isActive = true
-        
-        profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        profileImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
-        
-        profileImageView.layer.borderColor = UIColor.black.cgColor
-        profileImageView.layer.borderWidth = 1
-        
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = size / 2
+        avatarCustomView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        avatarCustomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        avatarCustomView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
     }
     
     func setupNameLabel() {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 15).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: avatarCustomView.centerYAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: avatarCustomView.rightAnchor, constant: 15).isActive = true
         
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         nameLabel.textColor = .black

@@ -11,7 +11,7 @@ class GroupsTableViewController: UITableViewController {
     
     let cellIdent = "groupCell"
     
-    var groupsArray = Frends.masFrends[0].groups
+    var groupsArray = User.info.groups
     
 
     override func viewDidLoad() {
@@ -27,13 +27,15 @@ extension GroupsTableViewController {
     func setupMainTableViewController() {
         view.backgroundColor = .white
         
+        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIdent)
+        
         setupTabBar()
         setupNavigation()
         
     }
     
     func setupTabBar() {
-        let tabBarItem = UITabBarItem(title: "Группы", image: UIImage(systemName: "rectangle.3.group.fill"), tag: 1)
+        let tabBarItem = UITabBarItem(title: "Группы", image: UIImage(systemName: "rectangle.3.group.fill"), tag: 2)
         self.tabBarItem = tabBarItem
     }
     
@@ -42,8 +44,6 @@ extension GroupsTableViewController {
         
         let findGroupBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(onClickFindGroupBarButtonItem))
         navigationItem.setRightBarButton(findGroupBarButtonItem, animated: true)
-        
-        tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIdent)
     }
     
     @objc func onClickFindGroupBarButtonItem() {
@@ -54,6 +54,10 @@ extension GroupsTableViewController {
             self?.tableView.reloadData()
         }
         allGroupTableViewController.groupUser = groupsArray
+        
+        let navigationControllerDelegate = NavigationControllerDelegate()
+        navigationController?.delegate = navigationControllerDelegate
+        
         navigationController?.pushViewController(allGroupTableViewController, animated: true)
     }
     
@@ -80,7 +84,7 @@ extension GroupsTableViewController {
 
         cell?.nameLabel.text = ("\(groupsArray[indexPath.row].name)")
         
-        cell?.profileImageView.image = UIImage(named: groupsArray[indexPath.row].avatar.photo)
+        cell?.avatarCustomView.profileImageView.image = UIImage(named: groupsArray[indexPath.row].avatar.photo)
         
         return cell ?? UITableViewCell()
     }

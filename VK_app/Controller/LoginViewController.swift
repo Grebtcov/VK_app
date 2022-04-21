@@ -189,20 +189,13 @@ extension LoginViewController {
         
         if loginTextField.text == "", passwordTextField.text == "" {
             
-            // TODO: убрать в Root Navigation и через него контролировать жизненный цикл классов
-            let friendsTableViewController = FriendsTableViewController(style: .plain)
-            let groupsTableViewController = GroupsTableViewController()
             
-            let friendsNavigationController = UINavigationController(rootViewController: friendsTableViewController)
-            let groupsNavigationController = UINavigationController(rootViewController: groupsTableViewController)
             
-            let mainTabBarController = UITabBarController()
-            mainTabBarController.setViewControllers([friendsNavigationController, groupsNavigationController], animated: true)
+            let loadViewController = LoadViewController()
+            loadViewController.modalPresentationStyle = .fullScreen
+            loadViewController.transitioningDelegate = self
             
-            mainTabBarController.modalPresentationStyle = .overCurrentContext
-            groupsTableViewController.loadViewIfNeeded()
-            
-            present(mainTabBarController, animated: true, completion: nil)
+            present(loadViewController, animated: true, completion: nil)
             
         } else {
             title = "Ошибка!"
@@ -240,5 +233,16 @@ extension LoginViewController {
     @objc func hideKeyboard() {
             self.view.endEditing(true)
         }
+}
+
+// MARK: TransitioningDelegate
+extension LoginViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionAnimator(isPresent: true, present: .modal)
+    }
+    
 }
 
