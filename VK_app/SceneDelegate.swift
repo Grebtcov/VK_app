@@ -19,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let loginViewController = LoginViewController()
+        let loginWebViewController = LoginWebViewController()
         
-        window.rootViewController = loginViewController
+        window.rootViewController = loginWebViewController
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         

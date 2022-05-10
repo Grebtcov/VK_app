@@ -10,10 +10,10 @@ import Foundation
 struct Session {
     
     /// The shared singleton session object.
-    static let shared = Session()
+    static var shared = Session()
     
-    var token: String?
-    var userId: Int?
+    var token: String = ""
+    var userId: Int = 0
     
     private init() {}
 }
