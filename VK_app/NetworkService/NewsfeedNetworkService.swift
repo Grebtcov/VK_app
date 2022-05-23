@@ -20,7 +20,7 @@ class NewsfeedNetworkService {
         
         guard let url = urlComponents?.url else { return }
         
-        NetworkService.shared.sendGetRequest(url: url) { data, _ in
+        NetworkService.shared.sendGetRequest(url: url) { data in
             
             guard let response = try? JSONDecoder().decode(NewsConteiner.self, from: data) else { return }
             

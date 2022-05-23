@@ -81,15 +81,10 @@ class PhotoViewController: UIViewController {
                     
                 } else {
                     
-                    NetworkService.shared.sendGetRequest(url: url) { data, response in
-                        
-//                        guard let response = response else {
-//                            return
-//                        }
-                        
+                    NetworkService.shared.sendGetRequest(url: url) { data in
+                                                
                         DispatchQueue.main.async {
                             viewImage = UIImageView(image: UIImage(data: data))
-//                            self.handleLoadedImage(data: data, response: response)
                         }
                     }
                 }
@@ -121,13 +116,6 @@ class PhotoViewController: UIViewController {
             photosImageView[i].centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         }
     }
-    
-//    private func handleLoadedImage(data: Data, response: URLResponse) {
-//        guard let responseURL = response.url else { return }
-//        let cachedResponse = CachedURLResponse(response: response, data: data)
-//        URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
-//
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

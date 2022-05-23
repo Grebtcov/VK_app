@@ -14,31 +14,13 @@ struct PhotoModel: Decodable {
     let likes: LikeModel
     let reposts: RepostModel
     
-   // Лишние поля пока решил скрыть пока по ДЗ нет необходимости
-   //let albumId:
-   // let date:
-   // let id:
-   // let ownerId:
-   // let postId:
-   // let hasTags:
-    
-    
-//    enum CodingKeys: CodingKey {
-//
-//        case albumId = "album_id"
-//        case date
-//        case id
-//        case ownerId = "owner_id"
-//        case postId = "post_id"
-//        case sizes
-//        case text
-//        case hasTags = "has_tags"
-//        case likes
-//        case reposts
-//
-//    }
-    
-    
+    func getUrlBigPhoto() -> String {
+        
+        let sort = sizes.sorted(by: { $0.type > $1.type })
+        
+        return sort.first?.url ?? ""
+        
+    }
 }
 
 struct SizeModel: Decodable {

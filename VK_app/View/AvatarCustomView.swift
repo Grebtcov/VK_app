@@ -66,32 +66,16 @@ import UIKit
             return
         }
         
-        NetworkService.shared.sendGetRequest(url: url) { data, response in
-            
-            guard let response = response else {
-                return
-            }
+        NetworkService.shared.sendGetRequest(url: url) { data in
             
             DispatchQueue.main.async {
                 self.profileImageView.image = UIImage(data: data)
-                self.handleLoadedImage(data: data, response: response)
             }
             
         }
         
         
     }
-    
-    
-    
-    private func handleLoadedImage(data: Data, response: URLResponse) {
-        guard let responseURL = response.url else { return }
-        let cachedResponse = CachedURLResponse(response: response, data: data)
-        URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
-
-    }
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
