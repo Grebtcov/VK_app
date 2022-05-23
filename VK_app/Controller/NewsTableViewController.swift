@@ -19,7 +19,23 @@ class NewsTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-
+        FriendsNetworkService.getFriends { json in
+            //В дебагере UTF-8 отображается норм, если будет записываться в символах буду решать в след. домашке
+            print("AllFriends \(json)")
+        }
+        
+        PhotosNetworkService.getAllPhotos(userId: Session.shared.userId) { json in
+            print("AllPhoto \(json)")
+        }
+        
+        GroupNetworkService.getAllgroup(userId: Session.shared.userId) { json in
+            print("AllGroup \(json)")
+        }
+        
+        GroupNetworkService.getGroupSearch(search: "Music") { json in
+            print("Group Search \(json)")
+        }
+        
     }
 }
 
