@@ -74,7 +74,7 @@ class PhotoViewController: UIViewController {
             
             var viewImage = UIImageView()
             
-            if photo.sizes.count > 0, let url = URL(string: photo.sizes[0].url) {
+            if let url = URL(string: photo.getUrlBigPhoto()) {
               
                 if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
                     viewImage = UIImageView(image: UIImage(data: cachedResponse.data))
@@ -85,6 +85,7 @@ class PhotoViewController: UIViewController {
                                                 
                         DispatchQueue.main.async {
                             viewImage = UIImageView(image: UIImage(data: data))
+                           // print(self.photosImageView.count)
                         }
                     }
                 }
@@ -128,7 +129,7 @@ class PhotoViewController: UIViewController {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-    
+    // Да я знаю что это плохо =)
     @objc func startTransition(_ sender: UIPanGestureRecognizer) {
         
       

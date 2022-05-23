@@ -105,8 +105,6 @@ extension DetailFriendsCollectionViewController {
         if let item = photosArray?[indexPath.row] {
             cell?.nameLabel.text = item.text
             
-            //Потом перенесу в более красивое место, но пока тут определяем самую большую фотографию
-            
             if let url = URL(string: item.getUrlBigPhoto()) {
                 
                 NetworkService.shared.sendGetRequest(url: url) { data in
@@ -118,20 +116,10 @@ extension DetailFriendsCollectionViewController {
                 
             }
             
-            if item.sizes.count > 3, let url = URL(string: item.sizes[2].url) {
-              
-                if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-                    cell?.photoImageView.image = UIImage(data: cachedResponse.data)
-                    
-                } else {
-                    
-                    
-                }
-            }
-            
             cell?.likeControl.countLike = item.likes.count
             cell?.likeControl.isLike = item.likes.userLikes == 1 ? true : false
         }
+        
         return cell ?? UICollectionViewCell()
     }
 }
