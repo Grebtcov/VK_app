@@ -11,13 +11,19 @@ class GroupsTableViewController: UITableViewController {
     
     let cellIdent = "groupCell"
     
-    var groupsArray = User.info.groups
+    var groupsArray: [GroupModel] = []
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GroupNetworkService.getAllgroup(userId: Session.shared.userId) { groups in
+            self.groupsArray = groups
+            self.tableView.reloadData()
+        }
+        
         setupMainTableViewController()
+        
     }
 }
 
@@ -49,11 +55,11 @@ extension GroupsTableViewController {
     @objc func onClickFindGroupBarButtonItem() {
         let allGroupTableViewController = AllGroupsTableViewController()
         
-        allGroupTableViewController.clouser = { [weak self] gr in
-            self?.groupsArray.append(gr)
-            self?.tableView.reloadData()
-        }
-        allGroupTableViewController.groupUser = groupsArray
+//        allGroupTableViewController.clouser = { [weak self] gr in
+////            self?.groupsArray.append(gr)
+////            self?.tableView.reloadData()
+//        }
+       // allGroupTableViewController.groupUser = groupsArray
         
         let navigationControllerDelegate = NavigationControllerDelegate()
         navigationController?.delegate = navigationControllerDelegate
@@ -83,8 +89,7 @@ extension GroupsTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as? FriendsAndGroupTableViewCell
 
         cell?.nameLabel.text = ("\(groupsArray[indexPath.row].name)")
-        
-        cell?.avatarCustomView.profileImageView.image = UIImage(named: groupsArray[indexPath.row].avatar.photo)
+        cell?.avatarCustomView.set(imageURL: groupsArray[indexPath.row].photo50)
         
         return cell ?? UITableViewCell()
     }

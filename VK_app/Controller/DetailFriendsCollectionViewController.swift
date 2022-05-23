@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 class DetailFriendsCollectionViewController: UICollectionViewController {
     
     var titleDetail: String?
-    var idUser: String?
+    var idUser: Int?
     var photosArray: [PhotoModel]?
     
     
@@ -23,6 +23,15 @@ class DetailFriendsCollectionViewController: UICollectionViewController {
         setupMainCollectionView()
         
         tabBarController?.tabBar.isHidden = true
+        
+        PhotosNetworkService.getAllPhotos(userId: idUser ?? 0) { photos in
+            DispatchQueue.main.async {
+                self.photosArray = photos
+                self.collectionView.reloadData()
+            }
+            
+            
+        }
         
     }
     
@@ -94,19 +103,40 @@ extension DetailFriendsCollectionViewController {
         
         
         if let item = photosArray?[indexPath.row] {
-            cell?.nameLabel.text = item.name
+            cell?.nameLabel.text = item.text
             
-            cell?.photoImageView.image = UIImage(named: item.photo)
-            cell?.likeControl.countLike = item.countLike
-            for id in item.peopleClickedLike where id == idUser {
-                cell?.likeControl.isLike = true
-                break
+            if item.sizes.count > 3, let url = URL(string: item.sizes[2].url) {
+              
+                if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
+                    cell?.photoImageView.image = UIImage(data: cachedResponse.data)
+                    
+                } else {
+                    
+                    NetworkService.shared.sendGetRequest(url: url) { data, response in
+                        
+                        guard let response = response else {
+                            return
+                        }
+                        
+                        DispatchQueue.main.async {
+                            cell?.photoImageView.image = UIImage(data: data)
+                            self.handleLoadedImage(data: data, response: response)
+                        }
+                    }
+                }
             }
+            
+            cell?.likeControl.countLike = item.likes.count
+            cell?.likeControl.isLike = item.likes.userLikes == 1 ? true : false
         }
-        
-        
-        
         return cell ?? UICollectionViewCell()
+    }
+    
+    private func handleLoadedImage(data: Data, response: URLResponse) {
+        guard let responseURL = response.url else { return }
+        let cachedResponse = CachedURLResponse(response: response, data: data)
+        URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
+        
     }
     
     

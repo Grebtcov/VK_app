@@ -9,7 +9,7 @@ import Foundation
 
 class GroupNetworkService {
     
-    static func getAllgroup(userId: Int, completion: @escaping(Any?) -> ()) {
+    static func getAllgroup(userId: Int, completion: @escaping([GroupModel]) -> ()) {
         
         var urlComponents = URLComponents(string: "https://api.vk.com/method/groups.get")
         urlComponents?.queryItems = [
@@ -21,12 +21,14 @@ class GroupNetworkService {
         
         guard let url = urlComponents?.url else { return }
         
-        NetworkService.shared.sendGetRequest(url: url) { json in
-            completion(json)
+        NetworkService.shared.sendGetRequest(url: url) { data, _ in
+            
+            guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
+            completion(groups.response)
         }
     }
     
-    static func getGroupSearch(search: String, completion: @escaping(Any?) -> ()) {
+    static func getGroupSearch(search: String, completion: @escaping([GroupModel]) -> ()) {
         
         var urlComponents = URLComponents(string: "https://api.vk.com/method/groups.search")
         urlComponents?.queryItems = [
@@ -37,8 +39,9 @@ class GroupNetworkService {
         
         guard let url = urlComponents?.url else { return }
         
-        NetworkService.shared.sendGetRequest(url: url) { json in
-            completion(json)
+        NetworkService.shared.sendGetRequest(url: url) { data, _ in
+            guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
+            completion(groups.response)
         }
     }
     

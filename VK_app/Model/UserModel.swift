@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct UserModel {
-    let id_user: String
-    let name: String
-    let lastName: String
-    let avatar: Int
-    let photos: [PhotoModel]
-    var groups: [GroupModel]
-}
+//struct UserModel {
+//    let id_user: String
+//    let name: String
+//    let lastName: String
+//    let avatar: Int
+//    let photos: [oldPhotoModel]
+//    var groups: [GroupOldModel]
+//}
