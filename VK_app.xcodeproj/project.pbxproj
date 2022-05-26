@@ -13,7 +13,6 @@
 		8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */; };
 		8B1D536A27EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D536927EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift */; };
 		8B1D537327ED6D4000F2A0FD /* FriendsAndGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D537227ED6D3F00F2A0FD /* FriendsAndGroupTableViewCell.swift */; };
-		8B1D537A27EFD32600F2A0FD /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D537927EFD32600F2A0FD /* TestData.swift */; };
 		8B1D537C27EFE48E00F2A0FD /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D537B27EFE48E00F2A0FD /* PhotoCollectionViewCell.swift */; };
 		8B3367C12826AF0400890314 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3367C02826AF0400890314 /* NetworkService.swift */; };
 		8B3367C32826B35700890314 /* FriendsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3367C22826B35700890314 /* FriendsNetworkService.swift */; };
@@ -57,7 +56,6 @@
 		8B1D536727EC218F00F2A0FD /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		8B1D536927EC37CB00F2A0FD /* DetailFriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		8B1D537227ED6D3F00F2A0FD /* FriendsAndGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsAndGroupTableViewCell.swift; sourceTree = "<group>"; };
-		8B1D537927EFD32600F2A0FD /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		8B1D537B27EFE48E00F2A0FD /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B3367C02826AF0400890314 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8B3367C22826B35700890314 /* FriendsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsNetworkService.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 				8BD28DC327D144AC002555F8 /* LaunchScreen.storyboard */,
 				8BD28DC627D144AC002555F8 /* Info.plist */,
 				8BD28DBE27D144AA002555F8 /* VK_app.xcdatamodeld */,
-				8B1D537927EFD32600F2A0FD /* TestData.swift */,
 			);
 			path = VK_app;
 			sourceTree = "<group>";
@@ -319,7 +316,6 @@
 				8B49C2F6283BFD0C00BE6044 /* RealmPhoto.swift in Sources */,
 				8BF81C97282B0CF700E81C7B /* GroupNetworkService.swift in Sources */,
 				8B8BD8AA283ED78F0018A5CD /* DataService.swift in Sources */,
-				8B1D537A27EFD32600F2A0FD /* TestData.swift in Sources */,
 				8B4B31122811F9E70083A6BB /* Session.swift in Sources */,
 				8B1D537327ED6D4000F2A0FD /* FriendsAndGroupTableViewCell.swift in Sources */,
 				8B4B310828071C580083A6BB /* LoadViewController.swift in Sources */,
