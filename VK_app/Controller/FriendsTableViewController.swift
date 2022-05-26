@@ -28,12 +28,13 @@ class FriendsTableViewController: UITableViewController {
         
         tableView.isUserInteractionEnabled = true
         
-        FriendsNetworkService.getFriends { friends in
+        DataService.shared.loadFriends { friends in
+
             DispatchQueue.main.async {
                 self.frendsArray = friends
                 self.groupIdFriendsInAlphabetical(self.frendsArray)
                 self.tableView.reloadData()
-           }
+            }
         }
         
         setupMainTableViewController()

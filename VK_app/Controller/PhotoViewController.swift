@@ -30,9 +30,40 @@ class PhotoViewController: UIViewController {
         navigationItem.title = "Все фотографии \(idPhoto)"
         tabBarController?.tabBar.isHidden = true
         
+                guard let photosArray = photosArray
+                    else {
+                        return
+                    }
         
+        for photo in photosArray {
+            
+            var viewImage = UIImageView()
+            
+            //TODO: убрать в красивое место, пока работает)
+            
+            if let url = URL(string: photo.getUrlBigPhoto()) {
+              
+                    NetworkService.shared.sendGetRequest(url: url) { data in
+                                                
+                        DispatchQueue.main.async { [self] in
+                            viewImage = UIImageView(image: UIImage(data: data))
+                            
+                            self.photosImageView.append(viewImage)
+                            let index = self.photosImageView.endIndex - 1
+                            self.view.addSubview(photosImageView[index])
+                            photosImageView[index].translatesAutoresizingMaskIntoConstraints = false
+                            photosImageView[index].widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+                            photosImageView[index].heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+                            addPhoto()
+                            view.layoutIfNeeded()
+                        }
+                    }
+
+            }
+            
+           
+        }
         
-        addPhoto()
         self.navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(back))
         self.navigationItem.leftBarButtonItem = backButton
@@ -64,45 +95,11 @@ class PhotoViewController: UIViewController {
         
         shiftX = view.frame.width
         
-        guard let photosArray = photosArray
-            else {
-                return
-            }
-        
 
-        for photo in photosArray {
-            
-            var viewImage = UIImageView()
-            
-            if photo.sizes.count > 0, let url = URL(string: photo.sizes[0].url) {
-              
-                if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-                    viewImage = UIImageView(image: UIImage(data: cachedResponse.data))
-                    
-                } else {
-                    
-                    NetworkService.shared.sendGetRequest(url: url) { data, response in
-                        
-//                        guard let response = response else {
-//                            return
-//                        }
-                        
-                        DispatchQueue.main.async {
-                            viewImage = UIImageView(image: UIImage(data: data))
-//                            self.handleLoadedImage(data: data, response: response)
-                        }
-                    }
-                }
-            }
-            
-            photosImageView.append(viewImage)
-            let index = photosImageView.endIndex - 1
-            view.addSubview(photosImageView[index])
-            photosImageView[index].translatesAutoresizingMaskIntoConstraints = false
-            photosImageView[index].widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-            photosImageView[index].heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        }
-        
+//
+//
+//
+//
         for i in 0..<photosImageView.count {
             
             if i == idPhoto {
@@ -122,13 +119,6 @@ class PhotoViewController: UIViewController {
         }
     }
     
-//    private func handleLoadedImage(data: Data, response: URLResponse) {
-//        guard let responseURL = response.url else { return }
-//        let cachedResponse = CachedURLResponse(response: response, data: data)
-//        URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
-//
-//    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -140,7 +130,7 @@ class PhotoViewController: UIViewController {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-    
+    // Да я знаю что это плохо =)
     @objc func startTransition(_ sender: UIPanGestureRecognizer) {
         
       

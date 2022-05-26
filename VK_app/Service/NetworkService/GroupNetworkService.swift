@@ -21,7 +21,7 @@ class GroupNetworkService {
         
         guard let url = urlComponents?.url else { return }
         
-        NetworkService.shared.sendGetRequest(url: url) { data, _ in
+        NetworkService.shared.sendGetRequest(url: url) { data in
             
             guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
             completion(groups.response)
@@ -39,7 +39,7 @@ class GroupNetworkService {
         
         guard let url = urlComponents?.url else { return }
         
-        NetworkService.shared.sendGetRequest(url: url) { data, _ in
+        NetworkService.shared.sendGetRequest(url: url) { data in
             guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
             completion(groups.response)
         }
