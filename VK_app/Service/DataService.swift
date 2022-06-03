@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 enum LoadData {
     
@@ -24,14 +25,14 @@ class DataService {
     func loadGroups(userId: Int, completion: @escaping([GroupModel]) -> ()) {
         
         do {
-            let groups = try DBService.shared.restoreGroups()
+            let groups = try RealmService.shared.restoreGroups()
         
             if groups.isEmpty {
                 print("Запрос в сеть")
                 GroupNetworkService.getAllgroup(userId: userId) { groups in
-                    DBService.shared.saveGroups(groups: groups)
+                    RealmService.shared.saveGroups(groups: groups)
                     
-                    guard let group = try? DBService.shared.restoreGroups() else { return }
+                    guard let group = try? RealmService.shared.restoreGroups() else { return }
                     
                     completion(group)
                 }
@@ -48,14 +49,14 @@ class DataService {
     func loadFriends(completion: @escaping([FriendModel]) -> ()) {
         
         do {
-            let friends = try DBService.shared.restoreFriends()
+            let friends = try RealmService.shared.restoreFriends()
         
             if friends.isEmpty {
                 print("Запрос в сеть")
                 FriendsNetworkService.getFriends { friends in
-                    DBService.shared.saveFriends(friends: friends)
+                    RealmService.shared.saveFriends(friends: friends)
                     
-                    guard let friend = try? DBService.shared.restoreFriends() else { return }
+                    guard let friend = try? RealmService.shared.restoreFriends() else { return }
                     
                     completion(friend)
                 }
@@ -71,14 +72,14 @@ class DataService {
     func loadPhotos(userId: Int, completion: @escaping([PhotoModel]) -> ()) {
         
         do {
-            let photos = try DBService.shared.restorePhotos(userId: userId)
+            let photos = try RealmService.shared.restorePhotos(userId: userId)
         
             if photos.isEmpty {
                 print("Запрос в сеть")
                 PhotosNetworkService.getAllPhotos(userId: userId) { photos in
-                    DBService.shared.savePhotos(photos: photos, userId: userId)
+                    RealmService.shared.savePhotos(photos: photos, userId: userId)
                     
-                    guard let photo = try? DBService.shared.restorePhotos(userId: userId) else { return }
+                    guard let photo = try? RealmService.shared.restorePhotos(userId: userId) else { return }
                     
                     completion(photo)
                 }

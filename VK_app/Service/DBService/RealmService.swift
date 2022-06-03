@@ -8,11 +8,32 @@
 import Foundation
 import RealmSwift
 
-class DBService {
+class RealmService {
     
     private init() {}
     
-    static let shared = DBService()
+    static let shared = RealmService()
+    
+    func makeObserver<T>(_: T.Type,
+                         completion: @escaping () -> Void) -> NotificationToken? where T: Object {
+
+            guard let realm = try? Realm() else { return nil }
+
+            let realmObjects = realm.objects(T.self)
+
+            let realmNotification = realmObjects.observe { changes in
+
+                switch changes {
+                case .initial(_), .update(_,_,_,_):
+                    completion()
+
+                case .error(let error):
+                    print(error)
+                }
+            }
+
+            return realmNotification
+        }
     
     
     func saveGroups(groups: [GroupModel]) {
