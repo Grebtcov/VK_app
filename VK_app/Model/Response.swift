@@ -20,8 +20,6 @@ struct ArrayResponse<T: Decodable>: Decodable {
     
     let response: [T]
     
-    // Не понимаю почему init должен быть вначале ( писали в телеге ) по стайлгайдам не нашел такую инфу
-    // например стайлгайд tutu
     init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)

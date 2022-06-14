@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
@@ -14,8 +15,9 @@ class DetailFriendsCollectionViewController: UICollectionViewController {
     var titleDetail: String?
     var idUser: Int?
     var photosArray: [PhotoModel]?
+    var realmNotification: NotificationToken?
     
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +26,16 @@ class DetailFriendsCollectionViewController: UICollectionViewController {
         
         tabBarController?.tabBar.isHidden = true
         
-        PhotosNetworkService.getAllPhotos(userId: idUser ?? 0) { photos in
-            DispatchQueue.main.async {
-                self.photosArray = photos
-                self.collectionView.reloadData()
+        realmNotification = RealmService.shared.makeObserver(RealmPhoto.self, completion: {
+            DataService.shared.loadPhotos(userId: self.idUser ?? 0) { photos in
+                DispatchQueue.main.async {
+                    self.photosArray = photos
+                    self.collectionView.reloadData()
+                }
             }
-            
-            
-        }
+        })
+        
+       
         
     }
     
@@ -141,4 +145,3 @@ extension DetailFriendsCollectionViewController {
         navigationController?.pushViewController(photoViewController, animated: true)
     }
 }
-

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class NewsTableViewController: UITableViewController {
 
@@ -20,11 +23,6 @@ class NewsTableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         
-        
-        
-        
-        
-        
         GroupNetworkService.getGroupSearch(search: "Music") { json in
             //print("Group Search \(json)")
         }
@@ -32,7 +30,6 @@ class NewsTableViewController: UITableViewController {
         NewsfeedNetworkService.getNewsfeed { news in
             self.news = news
         }
-        
     }
 }
 

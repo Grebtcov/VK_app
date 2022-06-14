@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsTableViewController: UITableViewController {
     
     var frendsArray: [FriendModel] = []
     let cellIndetifier = "friendsCell"
-    
+    var realmNotification: NotificationToken?
     private let searchBar = UISearchBar()
     
     private var dicGroupIdFriendsInAlphabetical: [String:[Int]] = [:]
@@ -27,14 +28,17 @@ class FriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.isUserInteractionEnabled = true
+        realmNotification = RealmService.shared.makeObserver(RealmFriend.self, completion: {
+            DataService.shared.loadFriends { friends in
+
+                DispatchQueue.main.async {
+                    self.frendsArray = friends
+                    self.groupIdFriendsInAlphabetical(self.frendsArray)
+                    self.tableView.reloadData()
+                }
+            }
+        })
         
-        FriendsNetworkService.getFriends { friends in
-            DispatchQueue.main.async {
-                self.frendsArray = friends
-                self.groupIdFriendsInAlphabetical(self.frendsArray)
-                self.tableView.reloadData()
-           }
-        }
         
         setupMainTableViewController()
        
