@@ -21,8 +21,6 @@ struct PhotoModel: Decodable {
         return sort.first?.url ?? ""
         
     }
-    
-    
 }
 
 struct SizeModel: Decodable {

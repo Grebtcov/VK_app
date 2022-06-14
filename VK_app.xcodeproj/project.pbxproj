@@ -348,7 +348,7 @@
 				8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */,
 				8B49C2F6283BFD0C00BE6044 /* RealmPhoto.swift in Sources */,
 				8BF81C97282B0CF700E81C7B /* GroupNetworkService.swift in Sources */,
-				8B8BD8AA283ED78F0018A5CD /* DataService.swift in Sources */,
+
 				8B4B31122811F9E70083A6BB /* Session.swift in Sources */,
 				8B1D537327ED6D4000F2A0FD /* FriendsAndGroupTableViewCell.swift in Sources */,
 				8B4B310828071C580083A6BB /* LoadViewController.swift in Sources */,
