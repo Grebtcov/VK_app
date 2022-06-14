@@ -20,6 +20,10 @@
 		8B49C2EA2838F0C400BE6044 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2E92838F0C400BE6044 /* PhotoModel.swift */; };
 		8B49C2EC2838FB1100BE6044 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2EB2838FB1100BE6044 /* FriendModel.swift */; };
 		8B49C2EE283900C000BE6044 /* NewsfeedNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2ED283900C000BE6044 /* NewsfeedNetworkService.swift */; };
+		8B49C2F4283BFCFF00BE6044 /* RealmGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2F3283BFCFF00BE6044 /* RealmGroup.swift */; };
+		8B49C2F6283BFD0C00BE6044 /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2F5283BFD0C00BE6044 /* RealmPhoto.swift */; };
+		8B49C2F8283BFD1F00BE6044 /* RealmFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B49C2F7283BFD1F00BE6044 /* RealmFriend.swift */; };
+		8B49C2FB283BFF3F00BE6044 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B49C2FA283BFF3F00BE6044 /* RealmSwift */; };
 		8B4B30FC27FD3F0B0083A6BB /* AvatarCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B30FB27FD3F0B0083A6BB /* AvatarCustomView.swift */; };
 		8B4B30FE27FD743D0083A6BB /* LikeCustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B30FD27FD743D0083A6BB /* LikeCustomControl.swift */; };
 		8B4B31002800E1830083A6BB /* NavigationFriendsCustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B30FF2800E1830083A6BB /* NavigationFriendsCustomControl.swift */; };
@@ -57,6 +61,9 @@
 		8B49C2E92838F0C400BE6044 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		8B49C2EB2838FB1100BE6044 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		8B49C2ED283900C000BE6044 /* NewsfeedNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedNetworkService.swift; sourceTree = "<group>"; };
+		8B49C2F3283BFCFF00BE6044 /* RealmGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroup.swift; sourceTree = "<group>"; };
+		8B49C2F5283BFD0C00BE6044 /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
+		8B49C2F7283BFD1F00BE6044 /* RealmFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFriend.swift; sourceTree = "<group>"; };
 		8B4B30FB27FD3F0B0083A6BB /* AvatarCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCustomView.swift; sourceTree = "<group>"; };
 		8B4B30FD27FD743D0083A6BB /* LikeCustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomControl.swift; sourceTree = "<group>"; };
 		8B4B30FF2800E1830083A6BB /* NavigationFriendsCustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationFriendsCustomControl.swift; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B49C2FB283BFF3F00BE6044 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +157,24 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
+		8B49C2EF283BFC7300BE6044 /* DBWorker */ = {
+			isa = PBXGroup;
+			children = (
+				8B49C2F0283BFC8200BE6044 /* RealmModel */,
+			);
+			path = DBWorker;
+			sourceTree = "<group>";
+		};
+		8B49C2F0283BFC8200BE6044 /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				8B49C2F3283BFCFF00BE6044 /* RealmGroup.swift */,
+				8B49C2F5283BFD0C00BE6044 /* RealmPhoto.swift */,
+				8B49C2F7283BFD1F00BE6044 /* RealmFriend.swift */,
+			);
+			path = RealmModel;
+			sourceTree = "<group>";
+		};
 		8BD28DA927D144AA002555F8 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +194,7 @@
 		8BD28DB427D144AA002555F8 /* VK_app */ = {
 			isa = PBXGroup;
 			children = (
+				8B49C2EF283BFC7300BE6044 /* DBWorker */,
 				8B3367BF2826AEEA00890314 /* NetworkService */,
 				8B1D537627EF99E700F2A0FD /* View */,
 				8B1D536D27ED5CEE00F2A0FD /* Model */,
@@ -199,6 +226,9 @@
 			dependencies = (
 			);
 			name = VK_app;
+			packageProductDependencies = (
+				8B49C2FA283BFF3F00BE6044 /* RealmSwift */,
+			);
 			productName = VK_app;
 			productReference = 8BD28DB227D144AA002555F8 /* VK_app.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +257,9 @@
 				Base,
 			);
 			mainGroup = 8BD28DA927D144AA002555F8;
+			packageReferences = (
+				8B49C2F9283BFF3F00BE6044 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 8BD28DB327D144AA002555F8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -265,6 +298,7 @@
 				8B49C2EC2838FB1100BE6044 /* FriendModel.swift in Sources */,
 				8B4B30FC27FD3F0B0083A6BB /* AvatarCustomView.swift in Sources */,
 				8B1D536827EC218F00F2A0FD /* AllGroupsTableViewController.swift in Sources */,
+				8B49C2F6283BFD0C00BE6044 /* RealmPhoto.swift in Sources */,
 				8BF81C97282B0CF700E81C7B /* GroupNetworkService.swift in Sources */,
 				8B4B31122811F9E70083A6BB /* Session.swift in Sources */,
 				8B1D537327ED6D4000F2A0FD /* FriendsAndGroupTableViewCell.swift in Sources */,
@@ -273,9 +307,11 @@
 				8B4B310228025CE20083A6BB /* NewsTableViewController.swift in Sources */,
 				8B1D536627EA596200F2A0FD /* GroupsTableViewController.swift in Sources */,
 				8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */,
+				8B49C2F8283BFD1F00BE6044 /* RealmFriend.swift in Sources */,
 				8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */,
 				8B1D536427EA48C000F2A0FD /* FriendsTableViewController.swift in Sources */,
 				8B4B31002800E1830083A6BB /* NavigationFriendsCustomControl.swift in Sources */,
+				8B49C2F4283BFCFF00BE6044 /* RealmGroup.swift in Sources */,
 				8B49C2E82838EC3000BE6044 /* Response.swift in Sources */,
 				8B1D537C27EFE48E00F2A0FD /* PhotoCollectionViewCell.swift in Sources */,
 				8B3367C32826B35700890314 /* FriendsNetworkService.swift in Sources */,
@@ -502,6 +538,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B49C2F9283BFF3F00BE6044 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B49C2FA283BFF3F00BE6044 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B49C2F9283BFF3F00BE6044 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8BD28DBE27D144AA002555F8 /* VK_app.xcdatamodeld */ = {
