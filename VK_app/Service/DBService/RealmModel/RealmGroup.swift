@@ -22,4 +22,3 @@ class RealmGroup: Object {
     @Persisted
     var photo50: String
 }
-
