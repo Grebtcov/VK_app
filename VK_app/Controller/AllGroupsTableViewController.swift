@@ -9,10 +9,13 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
     
+    private let searchBar = UISearchBar()
+    
     let cellIdent = "cell"
-    let allGroupsArray = Frends.masAllGroups
-    var groupUser: [GroupModel]?
-    var clouser: ((GroupModel) -> ())?
+    var allGroupsArray: [GroupModel] = []
+
+    private lazy var tapHideKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +43,23 @@ extension AllGroupsTableViewController {
         self.navigationItem.leftBarButtonItem = backButton
         
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
-            edgePan.edges = .left
+        edgePan.edges = .left
 
-            view.addGestureRecognizer(edgePan)
-        }
+        view.addGestureRecognizer(edgePan)
+        
+        
+        tableView.tableHeaderView = searchBar
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        searchBar.widthAnchor.constraint(equalTo: tableView.widthAnchor).isActive = true
+        searchBar.delegate = self
+    }
 
-        @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
-            if recognizer.state == .recognized {
+    @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if recognizer.state == .recognized {
                 popViewController()
-            }
         }
+    }
     
     @objc func back() {
         popViewController()
@@ -81,8 +91,7 @@ extension AllGroupsTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as? FriendsAndGroupTableViewCell
 
         cell?.nameLabel.text = ("\(allGroupsArray[indexPath.row].name)")
-        
-        cell?.avatarCustomView.profileImageView.image = UIImage(named: allGroupsArray[indexPath.row].avatar.photo)
+        cell?.avatarCustomView.set(imageURL: allGroupsArray[indexPath.row].photo50)
         
         return cell ?? UITableViewCell()
     }
@@ -94,30 +103,84 @@ extension AllGroupsTableViewController {
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        guard let groups = groupUser else {return nil}
+       // guard let groups = groupUser else {return nil}
         
-        var isSubscribe = false
-        
-        for gr in groups where gr.name == allGroupsArray[indexPath.row].name {
-            isSubscribe = true
-        }
-        
-        if !isSubscribe {
-            let addAction = UIContextualAction(style: .normal, title: "подписаться") { _, _, complete in
-                
-                let group = self.allGroupsArray[indexPath.row]
-                self.clouser?(group)
-                self.groupUser?.append(group)
-                complete(true)
-            }
-            addAction.backgroundColor = .systemBlue
-            let configuration = UISwipeActionsConfiguration(actions: [addAction])
-            configuration.performsFirstActionWithFullSwipe = true
-            return configuration
-        }
+//        var isSubscribe = false
+//        
+//        for gr in groups where gr.name == allGroupsArray[indexPath.row].name {
+//            isSubscribe = true
+//        }
+//        
+//        if !isSubscribe {
+//            let addAction = UIContextualAction(style: .normal, title: "подписаться") { _, _, complete in
+//                
+//                let group = self.allGroupsArray[indexPath.row]
+//                self.clouser?(group)
+//                self.groupUser?.append(group)
+//                complete(true)
+//            }
+//            addAction.backgroundColor = .systemBlue
+//            let configuration = UISwipeActionsConfiguration(actions: [addAction])
+//            configuration.performsFirstActionWithFullSwipe = true
+//            return configuration
+//        }
         
         
         
         return nil
     }
 }
+
+// MARK: - Table SearchBarDelegate
+extension AllGroupsTableViewController: UISearchBarDelegate {
+    
+    @objc func hideKeyboard() {
+            self.view.endEditing(true)
+        }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        view.addGestureRecognizer(tapHideKeyboardGestureRecognizer)
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        view.removeGestureRecognizer(tapHideKeyboardGestureRecognizer)
+    }
+    
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+               searchBar.resignFirstResponder()
+               //isSearch = false
+        }
+    
+        
+    
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            
+            if searchText.count == 0 {
+               // isSearch = false
+              //  groupIdFriendsInAlphabetical(frendsArray)
+                self.allGroupsArray = []
+                tableView.reloadData()
+            } else {
+               // isSearch = true
+//                filteredfrendsArray = frendsArray.filter({ (friend: FriendModel) -> Bool in
+//
+//                    return friend.lastName.lowercased().contains(searchText.lowercased())
+//                })
+//                groupIdFriendsInAlphabetical(filteredfrendsArray)
+                
+                GroupNetworkService.getGroupSearch(search: searchText) { groups in
+                    
+                    DispatchQueue.main.async {
+                        self.allGroupsArray = groups
+                        self.tableView.reloadData()
+                    }
+                    
+                }
+                
+                
+            }
+        }
+    
+    
+}
+

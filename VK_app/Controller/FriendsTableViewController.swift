@@ -9,16 +9,14 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
-    
-    let IdUser = User.info.id_user
-    let frendsArray = Frends.masFrends.sorted(by: {$0.lastName < $1.lastName})
+    var frendsArray: [FriendModel] = []
     let cellIndetifier = "friendsCell"
     
     private let searchBar = UISearchBar()
     
     private var dicGroupIdFriendsInAlphabetical: [String:[Int]] = [:]
     private var masAlphabetical: [String] = []
-    private var filteredfrendsArray: [UserModel] = []
+    private var filteredfrendsArray: [FriendModel] = []
     private var isSearch = false
     
     private lazy var tapHideKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -30,7 +28,13 @@ class FriendsTableViewController: UITableViewController {
         
         tableView.isUserInteractionEnabled = true
         
-        dicGroupIdFriendsInAlphabetical = groupIdFriendsInAlphabetical(frendsArray)
+        FriendsNetworkService.getFriends { friends in
+            DispatchQueue.main.async {
+                self.frendsArray = friends
+                self.groupIdFriendsInAlphabetical(self.frendsArray)
+                self.tableView.reloadData()
+           }
+        }
         
         setupMainTableViewController()
        
@@ -40,23 +44,27 @@ class FriendsTableViewController: UITableViewController {
 
 extension FriendsTableViewController {
     
-    func groupIdFriendsInAlphabetical(_ mas:[UserModel] ) -> [String:[Int]] {
+    func groupIdFriendsInAlphabetical(_ mas:[FriendModel] ) {
         masAlphabetical = []
-        var dicResult: [String:[Int]] = [:]
+        dicGroupIdFriendsInAlphabetical = [:]
+       // var dicResult: [String:[Int]] = [:]
         
         for (i,friend) in mas.enumerated() {
-            guard let firstCharLastName = friend.lastName.first else { return [:]}
+            if let firstCharLastName = friend.lastName.first {
             
-            if dicResult[String(firstCharLastName)] == nil {
-                dicResult[String(firstCharLastName)] = []
-                dicResult[String(firstCharLastName)]?.append(i)
+            if dicGroupIdFriendsInAlphabetical[String(firstCharLastName)] == nil {
+                dicGroupIdFriendsInAlphabetical[String(firstCharLastName)] = []
+                dicGroupIdFriendsInAlphabetical[String(firstCharLastName)]?.append(i)
                 masAlphabetical.append(String(firstCharLastName))
             } else {
-                dicResult[String(firstCharLastName)]?.append(i)
+                dicGroupIdFriendsInAlphabetical[String(firstCharLastName)]?.append(i)
+            }
             }
         }
         
-        return dicResult
+        masAlphabetical = masAlphabetical.sorted(by: {$0 < $1})
+        print("Ура")
+       // return dicResult
     }
     
     func setupMainTableViewController() {
@@ -102,11 +110,13 @@ extension FriendsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return masAlphabetical.count
+        //return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return dicGroupIdFriendsInAlphabetical[masAlphabetical[section]]?.count ?? 0
+        //return frendsArray.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -123,9 +133,9 @@ extension FriendsTableViewController {
         guard let index = dicGroupIdFriendsInAlphabetical[masAlphabetical[indexPath.section]]?[indexPath.row] else {
             return UITableViewCell()
         }
-        
-        var friend: UserModel = frendsArray[index]
-        
+
+        var friend: FriendModel = frendsArray[index]
+
         if isSearch {
             friend = filteredfrendsArray[index]
         }
@@ -136,12 +146,8 @@ extension FriendsTableViewController {
         cell.gradientLayer.startPoint = CGPoint.zero
         cell.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
         
-        cell.nameLabel.text = ("\(friend.lastName) \(friend.name)")
-        
-        let avatarId = friend.avatar
-        let avatarPhoto = friend.photos[avatarId].photo
-        
-        cell.avatarCustomView.profileImageView.image = UIImage(named: avatarPhoto)
+        cell.nameLabel.text = ("\(friend.lastName) \(friend.firstName)")
+        cell.avatarCustomView.set(imageURL: friend.photo50)
         
         return cell
     }
@@ -168,10 +174,9 @@ extension FriendsTableViewController {
         
        
         
-        detailFriendsCollectionViewController.titleDetail = ("\(friend.lastName) \(friend.name)")
+        detailFriendsCollectionViewController.titleDetail = ("\(friend.lastName) \(friend.firstName)")
         
-        detailFriendsCollectionViewController.photosArray = friend.photos
-        detailFriendsCollectionViewController.idUser = IdUser
+        detailFriendsCollectionViewController.idUser = friend.id
         
         let navigationControllerDelegate = NavigationControllerDelegate()
         navigationController?.delegate = navigationControllerDelegate
@@ -207,15 +212,15 @@ extension FriendsTableViewController: UISearchBarDelegate {
             
             if searchText.count == 0 {
                 isSearch = false
-                dicGroupIdFriendsInAlphabetical = groupIdFriendsInAlphabetical(frendsArray)
+                groupIdFriendsInAlphabetical(frendsArray)
                 tableView.reloadData()
             } else {
                 isSearch = true
-                filteredfrendsArray = frendsArray.filter({ (friend: UserModel) -> Bool in
+                filteredfrendsArray = frendsArray.filter({ (friend: FriendModel) -> Bool in
             
                     return friend.lastName.lowercased().contains(searchText.lowercased())
                 })
-                dicGroupIdFriendsInAlphabetical = groupIdFriendsInAlphabetical(filteredfrendsArray)
+                groupIdFriendsInAlphabetical(filteredfrendsArray)
                 tableView.reloadData()
             }
         }

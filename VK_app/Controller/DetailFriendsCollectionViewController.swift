@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 class DetailFriendsCollectionViewController: UICollectionViewController {
     
     var titleDetail: String?
-    var idUser: String?
+    var idUser: Int?
     var photosArray: [PhotoModel]?
     
     
@@ -23,6 +23,15 @@ class DetailFriendsCollectionViewController: UICollectionViewController {
         setupMainCollectionView()
         
         tabBarController?.tabBar.isHidden = true
+        
+        PhotosNetworkService.getAllPhotos(userId: idUser ?? 0) { photos in
+            DispatchQueue.main.async {
+                self.photosArray = photos
+                self.collectionView.reloadData()
+            }
+            
+            
+        }
         
     }
     
@@ -94,22 +103,25 @@ extension DetailFriendsCollectionViewController {
         
         
         if let item = photosArray?[indexPath.row] {
-            cell?.nameLabel.text = item.name
+            cell?.nameLabel.text = item.text
             
-            cell?.photoImageView.image = UIImage(named: item.photo)
-            cell?.likeControl.countLike = item.countLike
-            for id in item.peopleClickedLike where id == idUser {
-                cell?.likeControl.isLike = true
-                break
+            if let url = URL(string: item.getUrlBigPhoto()) {
+                
+                NetworkService.shared.sendGetRequest(url: url) { data in
+                    
+                    DispatchQueue.main.async {
+                        cell?.photoImageView.image = UIImage(data: data)
+                    }
+                }
+                
             }
+            
+            cell?.likeControl.countLike = item.likes.count
+            cell?.likeControl.isLike = item.likes.userLikes == 1 ? true : false
         }
-        
-        
         
         return cell ?? UICollectionViewCell()
     }
-    
-    
 }
 
 // MARK: - Table Delegate

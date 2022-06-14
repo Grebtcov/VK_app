@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable class AvatarCustomView: UIView {
     
-    let profileImageView = UIImageView()
+    var profileImageView = UIImageView()
     let shadowView = UIView()
     
     lazy var tapGestureRecognizer: UITapGestureRecognizer = {
@@ -56,6 +56,25 @@ import UIKit
         addGestureRecognizer(tapGestureRecognizer)
         setupAvatarCustomView()
         setupUIElements()
+    }
+    
+    func set(imageURL: String?) {
+        guard let imageURL = imageURL, let url = URL(string: imageURL) else { return }
+        
+        if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
+            self.profileImageView.image = UIImage(data: cachedResponse.data)
+            return
+        }
+        
+        NetworkService.shared.sendGetRequest(url: url) { data in
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: data)
+            }
+            
+        }
+        
+        
     }
     
     required init?(coder: NSCoder) {
