@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsTableViewController: UITableViewController {
     
     let cellIdent = "groupCell"
+    var realmNotification: NotificationToken?
     
     var groupsArray: [GroupModel] = []
     
@@ -17,12 +19,16 @@ class GroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataService.shared.loadGroups(userId: Session.shared.userId) { groups in
-            DispatchQueue.main.async {
-                self.groupsArray = groups
-                self.tableView.reloadData()
+        realmNotification = RealmService.shared.makeObserver(RealmGroup.self, completion: {
+            DataService.shared.loadGroups(userId: Session.shared.userId) { groups in
+                DispatchQueue.main.async {
+                    self.groupsArray = groups
+                    self.tableView.reloadData()
+                }
             }
-        }
+        })
+        
+        
     
         setupMainTableViewController()
         

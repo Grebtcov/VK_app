@@ -36,7 +36,7 @@
 		8B4B310E280F66AA0083A6BB /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B310D280F66AA0083A6BB /* NavigationControllerDelegate.swift */; };
 		8B4B31122811F9E70083A6BB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B31112811F9E70083A6BB /* Session.swift */; };
 		8B8BD8AA283ED78F0018A5CD /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BD8A9283ED78F0018A5CD /* DataService.swift */; };
-		8B8BD8AC283ED8240018A5CD /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BD8AB283ED8240018A5CD /* DBService.swift */; };
+		8B8BD8AC283ED8240018A5CD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BD8AB283ED8240018A5CD /* RealmService.swift */; };
 		8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB527D144AA002555F8 /* AppDelegate.swift */; };
 		8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB727D144AA002555F8 /* SceneDelegate.swift */; };
 		8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB927D144AA002555F8 /* LoginViewController.swift */; };
@@ -78,7 +78,7 @@
 		8B4B310D280F66AA0083A6BB /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8B4B31112811F9E70083A6BB /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		8B8BD8A9283ED78F0018A5CD /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		8B8BD8AB283ED8240018A5CD /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		8B8BD8AB283ED8240018A5CD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		8BD28DB227D144AA002555F8 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD28DB527D144AA002555F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD28DB727D144AA002555F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				8B49C2F0283BFC8200BE6044 /* RealmModel */,
-				8B8BD8AB283ED8240018A5CD /* DBService.swift */,
+				8B8BD8AB283ED8240018A5CD /* RealmService.swift */,
 			);
 			path = DBService;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD28DC027D144AA002555F8 /* VK_app.xcdatamodeld in Sources */,
-				8B8BD8AC283ED8240018A5CD /* DBService.swift in Sources */,
+				8B8BD8AC283ED8240018A5CD /* RealmService.swift in Sources */,
 				8BF81C95282AF37200E81C7B /* PhotosNetworkService.swift in Sources */,
 				8B4B310C280F5A970083A6BB /* TransitionAnimator.swift in Sources */,
 				8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */,
