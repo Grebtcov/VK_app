@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import RealmSwift
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try? realm.write {
             try? Realm().deleteAll()
         }
-        
+        FirebaseApp.configure()
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // Override point for customization after application launch.
         return true
