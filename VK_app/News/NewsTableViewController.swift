@@ -13,7 +13,7 @@ import FirebaseFirestore
 class NewsTableViewController: UITableViewController {
 
     let cellIndent = "newsCell"
-    var news: NewsModel? = nil
+    //var news: NewsModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,9 @@ class NewsTableViewController: UITableViewController {
             //print("Group Search \(json)")
         }
         
-        NewsfeedNetworkService.getNewsfeed { news in
-            self.news = news
-        }
+//        NewsfeedNetworkService.getNewsfeed { news in
+//            self.news = news
+//        }
     }
 }
 
@@ -41,7 +41,7 @@ extension NewsTableViewController {
         view.backgroundColor = .white
         
         title = "Новости"
-        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: cellIndent)
+      //  tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: cellIndent)
        // tableView.register(FriendsAndGroupTableViewCell.self, forCellReuseIdentifier: cellIndent)
         
         setupTabBar()
@@ -66,30 +66,31 @@ extension NewsTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return news?.items.count ?? 0
+        //return news?.items.count ?? 0
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndent, for: indexPath) as? NewsTableViewCell,
-              let news = news else {
-            return UITableViewCell()
-        }
-
-        
-        //MARK: Заполнение новости
-        cell.avatarGroupView.profileImageView.image = nil
-        cell.groupNameLabel.text = ""
-        cell.textNewsLabel.text = news.items[indexPath.row].text
-        cell.textNewsLabel.font = UIFont.systemFont(ofSize: 14)
-        cell.textNewsLabel.numberOfLines = 0
-        cell.textNewsLabel.lineBreakMode = .byWordWrapping
-        cell.textNewsLabel.sizeToFit()
-        
-        
-        let sizeImage = tableView.frame.width
-        cell.newsBodyView.widthAnchor.constraint(equalToConstant: sizeImage).isActive = true
-        cell.newsBodyView.heightAnchor.constraint(equalToConstant: sizeImage).isActive = true
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndent, for: indexPath) as? NewsTableViewCell,
+//              let news = news else {
+//            return UITableViewCell()
+//        }
+//
+//
+//        //MARK: Заполнение новости
+//        cell.avatarGroupView.profileImageView.image = nil
+//        cell.groupNameLabel.text = ""
+//        cell.textNewsLabel.text = news.items[indexPath.row].text
+//        cell.textNewsLabel.font = UIFont.systemFont(ofSize: 14)
+//        cell.textNewsLabel.numberOfLines = 0
+//        cell.textNewsLabel.lineBreakMode = .byWordWrapping
+//        cell.textNewsLabel.sizeToFit()
+//
+//
+//        let sizeImage = tableView.frame.width
+//        cell.newsBodyView.widthAnchor.constraint(equalToConstant: sizeImage).isActive = true
+//        cell.newsBodyView.heightAnchor.constraint(equalToConstant: sizeImage).isActive = true
         
         // TODO: вынести в функцию
 //       if news[indexPath.row].photo.count == 1 {
@@ -225,10 +226,10 @@ extension NewsTableViewController {
 //           
 //       }
         
-        cell.viewedLabel.text = "200k"
+       // cell.viewedLabel.text = "200k"
         
         
-        return cell
+        return UITableViewCell()
     }
     
 }
