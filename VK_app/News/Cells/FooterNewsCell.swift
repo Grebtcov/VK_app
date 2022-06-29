@@ -17,17 +17,25 @@ class FooterNewsCell: UITableViewCell {
     private let viewedImageView = UIImageView()
     private let viewedLabel = UILabel()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupNewsTableCell()
+        setupUIElements()
     }
+    
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+}
 
-        // Configure the view for the selected state
+extension FooterNewsCell {
+    func setCell(like: Int?, viewed: Int?) {
+        likeControl.countLike = like ?? 0
+        viewedLabel.text = String(viewed ?? 0)
+        self.addBottomBorder()
     }
-
 }
 
 private extension FooterNewsCell {
@@ -51,7 +59,6 @@ private extension FooterNewsCell {
         setupShareButton()
         setupViewedImageView()
         setupViewedLabel()
-        
     }
     
    
@@ -61,10 +68,9 @@ private extension FooterNewsCell {
             likeControl.widthAnchor.constraint(equalToConstant: 50),
             likeControl.heightAnchor.constraint(equalToConstant: 25),
             likeControl.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            likeControl.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
+            likeControl.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            likeControl.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
-        
-        
     }
     
     func setupCommentButton() {
@@ -106,3 +112,19 @@ private extension FooterNewsCell {
     }
 }
 
+private extension UITableViewCell {
+    
+    func addBottomBorder() {
+        
+        let border = UIView()
+        border.backgroundColor = .systemGray
+        self.addSubview(border)
+        border.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            border.heightAnchor.constraint(equalToConstant: 1),
+            border.widthAnchor.constraint(equalTo: self.widthAnchor),
+            border.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        }
+    }
