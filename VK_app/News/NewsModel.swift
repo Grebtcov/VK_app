@@ -32,7 +32,7 @@ struct NewsModel {
 
 struct TextItem: ContentItemProtocol {
     
-//    let sourceId: Int
+    let sourceId: Int
 //    let postId: Int
     let text: String
     //let date: Double
