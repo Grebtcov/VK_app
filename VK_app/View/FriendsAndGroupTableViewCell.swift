@@ -24,6 +24,12 @@ class FriendsAndGroupTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    
+    func setCell(name: String, url: String) {
+        avatarCustomView.set(imageURL: url)
+        nameLabel.text = name
+    }
+    
 
 }
 
