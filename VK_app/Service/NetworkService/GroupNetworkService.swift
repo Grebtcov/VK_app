@@ -40,8 +40,10 @@ class GroupNetworkService {
         guard let url = urlComponents?.url else { return }
         
         NetworkService.shared.sendGetRequest(url: url) { data in
-            guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
-            completion(groups.response)
+            DispatchQueue.global().async {
+                guard let groups = try? JSONDecoder().decode(ArrayResponse<GroupModel>.self, from: data) else { return }
+                completion(groups.response)
+            }
         }
     }
     

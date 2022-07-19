@@ -14,11 +14,11 @@ class NetworkService {
     static let shared = NetworkService()
     
     func sendGetRequest(url: URL, completion: @escaping(Data) -> ()) {
-        
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
-                completion(data)
-        }.resume()
-        
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                guard let data = data else { return }
+                    completion(data)
+            }.resume()
+        }
     }
 }

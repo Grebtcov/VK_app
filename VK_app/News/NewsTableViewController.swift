@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
+//import Firebase
+//import FirebaseCore
+//import FirebaseFirestore
 
 class NewsTableViewController: UITableViewController {
 
@@ -17,8 +17,8 @@ class NewsTableViewController: UITableViewController {
     private let imageCellIdent = "ContentImageCell"
     private let footerCellIndent = "FooterNewsCell"
     
-    var news = NewsModelMock.getData()
-    var sections: [[UITableViewCell]] = []
+    var news: NewsModel?
+   // var sections: [[UITableViewCell]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,17 @@ class NewsTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
+        
+        NewsfeedNetworkService.getNewsfeed { result in
+            
+            DispatchQueue.main.async {
+                self.news = result
+                print("photo \(result.items[0].attachments?[0].photo?.sizes[0].url)")
+                self.tableView.reloadData()
+            }
+        }
+        
+        
     }
 }
 
@@ -63,65 +74,80 @@ extension NewsTableViewController {
 extension NewsTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return news.count
+        return news?.items.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return news?.items.count ?? 0
-        return news[section].items.count + 2
+        return news?.items[section].countCell ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let group = news[indexPath.section].groups
-        let footer = news[indexPath.section].footer
+        guard let item = news?.items[indexPath.section] else { return UITableViewCell()}
         
-        //for n in news {
-        if indexPath.row == 0 {
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIndent, for: indexPath) as? FriendsAndGroupTableViewCell else {
-                        return UITableViewCell()
-            }
-            cell.setCell(name: group.name, url: group.photo50)
-            
-            return cell
-           // section.append(header)
-        } else if indexPath.row >= 1, indexPath.row < news[indexPath.section].items.count + 1 {
-            let m = news[indexPath.section].items[indexPath.row - 1]
-                if let m = m as? PhotoItem {
-                    
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdent, for: indexPath) as? ContentImageCell else {
-                                return UITableViewCell()
-                    }
-                    
-                    cell.setCell(url: m.url, size: view.frame.width)
-
-                    return cell
-                } else if let m = m as? TextItem {
-
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: textCellIndent, for: indexPath) as? ContentTextCell else {
-                                return UITableViewCell()
-                    }
-                    cell.setCell(text: m.text)
-
-                    return cell
-                }
-        } else {
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: footerCellIndent, for: indexPath) as? FooterNewsCell else {
-                        return UITableViewCell()
-            }
-            
-            cell.setCell(like: footer.likes?.count, viewed: footer.views?.count)
-
-           return cell
+        switch indexPath.row {
+        case 0:
+            return setHeaderCell(cellForRowAt: indexPath)
+        case 1 where item.text != "" :
+            return setTextCell(cellForRowAt: indexPath, text: item.text)
+        case 1 where item.attachments?[0].type == "photo" :
+            guard let photo = item.attachments?[0].photo else { return UITableViewCell() }
+            return setPhotoCell(cellForRowAt: indexPath, photo: photo)
+        case 2 where item.countCell > 3 :
+            guard let photo = item.attachments?[0].photo else { return UITableViewCell() }
+                return setPhotoCell(cellForRowAt: indexPath, photo: photo)
+        case 2, 3:
+            return setFooterCell(cellForRowAt: indexPath, item: item)
+        default: break
         }
         
         return UITableViewCell()
     }
     
+    //MARK: setCells
+    func setHeaderCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIndent, for: indexPath) as? FriendsAndGroupTableViewCell,
+              let id = news?.items[indexPath.section].sourceId,
+              let result = news?.getSource(id: id)
+        else { return UITableViewCell() }
+       
+        cell.setCell(name: result.name ?? "", url: result.photo ?? "")
+        
+        return cell
+    }
+    
+    func setTextCell(cellForRowAt indexPath: IndexPath, text: String) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: textCellIndent, for: indexPath) as? ContentTextCell
+        else { return UITableViewCell() }
+       
+        cell.setCell(text: text)
+        
+        return cell
+    }
+    
+    func setPhotoCell(cellForRowAt indexPath: IndexPath, photo: PhotoModel) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdent, for: indexPath) as? ContentImageCell
+        else { return UITableViewCell() }
+        
+        var sizes = photo.sizes.first(where: {$0.width >= Int(view.frame.width)})
+        
+        if sizes == nil {
+            sizes = photo.sizes[0]
+        }
+        
+        cell.setCell(url: sizes?.url ?? "", size: view.frame.width)
+        
+        return cell
+    }
+    
+    func setFooterCell(cellForRowAt indexPath: IndexPath, item: ItemModel) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: footerCellIndent, for: indexPath) as? FooterNewsCell
+        else { return UITableViewCell() }
+        
+        cell.setCell(like: item.likes.count, viewed: item.views.count)
+        
+        return cell
+    }
     
     
 }

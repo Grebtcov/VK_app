@@ -6,67 +6,63 @@
 //
 
 import Foundation
+import SwiftUI
 
-//Все что закомментированно нужно в следующей домашке
-
-protocol ContentItemProtocol { }
-
-protocol NewsProtocol {
-    
-}
-
-struct NewsConteiner {
-    
+struct NewsConteiner: Decodable {
     let response: NewsModel
-    
 }
 
-struct NewsModel {
+struct NewsModel: Decodable {
     
-    var items: [ContentItemProtocol]
-   // let profiles: [FriendModel]
-    let groups: GroupModel
-    let footer: Footer
+    let items: [ItemModel]
+    let profiles: [FriendModel]
+    let groups: [GroupModel]
     
+    func getSource(id: Int) -> (name: String?, photo: String?) {
+        var name: String?
+        var photo: String?
+        
+        if id < 0 {
+            let positiveId = id * -1
+            let group = self.groups.first(where: {$0.id == positiveId})
+            name = group?.name
+            photo = group?.photo50
+        } else {
+            let profiles = self.profiles.first(where: {$0.id == id})
+            name = profiles?.fullName
+            photo = profiles?.photo50
+        }
+        return (name, photo)
+    }
 }
 
-struct TextItem: ContentItemProtocol {
-    
+struct ItemModel: Decodable {
     let sourceId: Int
-//    let postId: Int
+    let attachments: [AttachmentsModel]?
     let text: String
-    //let date: Double
+    let comments: NewsOtherItem
+    let likes: NewsOtherItem
+    let reposts: NewsOtherItem
+    let views: NewsOtherItem
+    var countCell: Int {
+       (text == "" || attachments == nil) == true ? 3 : 4
+    }
     
-//
-//    enum CodingKeys: String, CodingKey {
-//
-//        case sourceId = "source_id"
-//        case postId = "post_id"
-//        case text
-//        case date
-//        case comments
-//        case likes
-//        case reposts
-//        case views
-//    }
+    enum CodingKeys: String, CodingKey {
+        case sourceId = "source_id"
+        case attachments
+        case text
+        case comments
+        case likes
+        case reposts
+        case views
+    }
 }
 
-struct PhotoItem: ContentItemProtocol {
-    let url: String
-    //let date: Double
-//    let comments: NewsOtherItem?
-//    let likes: NewsOtherItem?
-//    let reposts: NewsOtherItem?
-//    let views: NewsOtherItem?
+struct AttachmentsModel: Decodable {
+    let type: String
+    let photo: PhotoModel?
 }
-
-struct Footer {
-    let comments: NewsOtherItem?
-    let likes: NewsOtherItem?
-    let reposts: NewsOtherItem?
-    let views: NewsOtherItem?
-}
-
 
 struct NewsOtherItem: Decodable {
     let count: Int

@@ -73,9 +73,9 @@ class RealmService {
             
             realmPhoto.idUser = userId
             realmPhoto.text = photo.text
-            realmPhoto.likesCount = photo.likes.count
-            realmPhoto.userLikes = photo.likes.userLikes
-            realmPhoto.repostsCount = photo.reposts.count
+            realmPhoto.likesCount = photo.likes?.count ?? 0
+            realmPhoto.userLikes = photo.likes?.userLikes ?? 0
+            realmPhoto.repostsCount = photo.reposts?.count ?? 0
             realmPhoto.photo = photo.getUrlBigPhoto()
                         
             return realmPhoto

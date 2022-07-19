@@ -6,39 +6,39 @@
 //
 
 import Foundation
-import Firebase
+//import Firebase
 
-class FirebaseService {
-    
-    private init() { }
-    
-    static let shared = FirebaseService()
-    
-    func saveUserLogin(userId: Int) {
-        
-        let firebaseFirestore = Firestore.firestore()
-        
-        firebaseFirestore
-            .collection("users")
-            .addDocument(data: [
-                "user_id": userId,
-                "date": Date.now
-            ])
-    }
-    
-    
-    func saveGroupUser(userId: Int, groupId: Int) {
-        
-        let firebaseFirestore = Firestore.firestore()
-        
-        firebaseFirestore
-            .collection("groups")
-            .addDocument(data: [
-                "user_id": userId,
-                "group_id": groupId,
-                "date": Date.now
-            ])
-    }
-}
+//class FirebaseService {
+//
+//    private init() { }
+//
+//    static let shared = FirebaseService()
+//
+//    func saveUserLogin(userId: Int) {
+//
+//        let firebaseFirestore = Firestore.firestore()
+//
+//        firebaseFirestore
+//            .collection("users")
+//            .addDocument(data: [
+//                "user_id": userId,
+//                "date": Date.now
+//            ])
+//    }
+//
+//
+//    func saveGroupUser(userId: Int, groupId: Int) {
+//
+//        let firebaseFirestore = Firestore.firestore()
+//
+//        firebaseFirestore
+//            .collection("groups")
+//            .addDocument(data: [
+//                "user_id": userId,
+//                "group_id": groupId,
+//                "date": Date.now
+//            ])
+//    }
+//}
 
 

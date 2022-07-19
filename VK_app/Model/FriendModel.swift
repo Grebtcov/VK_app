@@ -13,6 +13,9 @@ struct FriendModel: Decodable {
     let photo50: String
     let firstName: String
     let lastName: String
+    var fullName: String {
+        "\(firstName) \(lastName)"
+    }
 
     
     enum CodingKeys: String, CodingKey {
@@ -23,5 +26,4 @@ struct FriendModel: Decodable {
         case lastName = "last_name"
         
     }
-    
 }
