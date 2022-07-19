@@ -83,7 +83,7 @@ extension LoginWebViewController: WKNavigationDelegate {
         loadViewController.modalPresentationStyle = .fullScreen
         loadViewController.transitioningDelegate = self
         
-        FirebaseService.shared.saveUserLogin(userId: userId)
+        //FirebaseService.shared.saveUserLogin(userId: userId)
         present(loadViewController, animated: true, completion: nil)
         
     }

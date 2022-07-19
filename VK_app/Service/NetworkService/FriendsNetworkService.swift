@@ -22,12 +22,10 @@ class FriendsNetworkService {
         guard let url = urlComponents?.url else { return }
         
         NetworkService.shared.sendGetRequest(url: url) { data  in
-            guard let friends = try? JSONDecoder().decode(ArrayResponse<FriendModel>.self, from: data) else { return }
-            
-            comletion(friends.response)
+            DispatchQueue.global().async {
+                guard let friends = try? JSONDecoder().decode(ArrayResponse<FriendModel>.self, from: data) else { return }
+                comletion(friends.response)
+            }
         }
-        
-        
     }
-    
 }

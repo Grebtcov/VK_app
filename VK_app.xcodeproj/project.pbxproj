@@ -34,7 +34,6 @@
 		8BB2C50A2863A9C000D74DF2 /* ContentTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2C5092863A9C000D74DF2 /* ContentTextCell.swift */; };
 		8BB2C50C2863A9D700D74DF2 /* ContentImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2C50B2863A9D700D74DF2 /* ContentImageCell.swift */; };
 		8BB2C50E2863AA0700D74DF2 /* FooterNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2C50D2863AA0700D74DF2 /* FooterNewsCell.swift */; };
-		8BB2C5142864F6A500D74DF2 /* NewsModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2C5132864F6A500D74DF2 /* NewsModelMock.swift */; };
 		8BD28DB627D144AA002555F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB527D144AA002555F8 /* AppDelegate.swift */; };
 		8BD28DB827D144AA002555F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB727D144AA002555F8 /* SceneDelegate.swift */; };
 		8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD28DB927D144AA002555F8 /* LoginViewController.swift */; };
@@ -46,9 +45,6 @@
 		8BF81C97282B0CF700E81C7B /* GroupNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF81C96282B0CF700E81C7B /* GroupNetworkService.swift */; };
 		8BF81CAC282D50BA00E81C7B /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF81CAB282D50BA00E81C7B /* GroupModel.swift */; };
 		8BFBCBDC28591BA200514ED6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBCBDB28591BA200514ED6 /* GoogleService-Info.plist */; };
-		8BFBCBDF28591C6C00514ED6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFBCBDE28591C6C00514ED6 /* FirebaseDatabase */; };
-		8BFBCBE128591C6C00514ED6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFBCBE028591C6C00514ED6 /* FirebaseFirestore */; };
-		8BFBCBE328591C6C00514ED6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFBCBE228591C6C00514ED6 /* FirebaseStorage */; };
 		8BFBCBE72859228F00514ED6 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBCBE62859228F00514ED6 /* FirebaseService.swift */; };
 		8BFBCBEC2859518D00514ED6 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBCBEB2859518D00514ED6 /* RealmService.swift */; };
 		8BFBCBEE285951BE00514ED6 /* RealmFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBCBED285951BE00514ED6 /* RealmFriend.swift */; };
@@ -84,7 +80,6 @@
 		8BB2C5092863A9C000D74DF2 /* ContentTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextCell.swift; sourceTree = "<group>"; };
 		8BB2C50B2863A9D700D74DF2 /* ContentImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImageCell.swift; sourceTree = "<group>"; };
 		8BB2C50D2863AA0700D74DF2 /* FooterNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterNewsCell.swift; sourceTree = "<group>"; };
-		8BB2C5132864F6A500D74DF2 /* NewsModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModelMock.swift; sourceTree = "<group>"; };
 		8BD28DB227D144AA002555F8 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD28DB527D144AA002555F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD28DB727D144AA002555F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,10 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BFBCBDF28591C6C00514ED6 /* FirebaseDatabase in Frameworks */,
-				8BFBCBE328591C6C00514ED6 /* FirebaseStorage in Frameworks */,
 				8B49C2FB283BFF3F00BE6044 /* RealmSwift in Frameworks */,
-				8BFBCBE128591C6C00514ED6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +202,6 @@
 				8B359C44286C578000FFACD3 /* Cells */,
 				8B4B31052804D1390083A6BB /* NewsModel.swift */,
 				8B4B310128025CE20083A6BB /* NewsTableViewController.swift */,
-				8BB2C5132864F6A500D74DF2 /* NewsModelMock.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -287,9 +278,6 @@
 			name = VK_app;
 			packageProductDependencies = (
 				8B49C2FA283BFF3F00BE6044 /* RealmSwift */,
-				8BFBCBDE28591C6C00514ED6 /* FirebaseDatabase */,
-				8BFBCBE028591C6C00514ED6 /* FirebaseFirestore */,
-				8BFBCBE228591C6C00514ED6 /* FirebaseStorage */,
 			);
 			productName = VK_app;
 			productReference = 8BD28DB227D144AA002555F8 /* VK_app.app */;
@@ -321,7 +309,6 @@
 			mainGroup = 8BD28DA927D144AA002555F8;
 			packageReferences = (
 				8B49C2F9283BFF3F00BE6044 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				8BFBCBDD28591C6C00514ED6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 8BD28DB327D144AA002555F8 /* Products */;
 			projectDirPath = "";
@@ -355,7 +342,6 @@
 				8BFBCBEC2859518D00514ED6 /* RealmService.swift in Sources */,
 				8BFBCBF0285951DD00514ED6 /* RealmGroup.swift in Sources */,
 				8BF81C95282AF37200E81C7B /* PhotosNetworkService.swift in Sources */,
-				8BB2C5142864F6A500D74DF2 /* NewsModelMock.swift in Sources */,
 				8B4B310C280F5A970083A6BB /* TransitionAnimator.swift in Sources */,
 				8BD28DBA27D144AA002555F8 /* LoginViewController.swift in Sources */,
 				8B4B310E280F66AA0083A6BB /* NavigationControllerDelegate.swift in Sources */,
@@ -618,14 +604,6 @@
 				kind = branch;
 			};
 		};
-		8BFBCBDD28591C6C00514ED6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -633,21 +611,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B49C2F9283BFF3F00BE6044 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		8BFBCBDE28591C6C00514ED6 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BFBCBDD28591C6C00514ED6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		8BFBCBE028591C6C00514ED6 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BFBCBDD28591C6C00514ED6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		8BFBCBE228591C6C00514ED6 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BFBCBDD28591C6C00514ED6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -120,8 +120,8 @@ extension DetailFriendsCollectionViewController {
                 
             }
             
-            cell?.likeControl.countLike = item.likes.count
-            cell?.likeControl.isLike = item.likes.userLikes == 1 ? true : false
+            cell?.likeControl.countLike = item.likes?.count ?? 0
+            cell?.likeControl.isLike = item.likes?.userLikes == 1 ? true : false
         }
         
         return cell ?? UICollectionViewCell()

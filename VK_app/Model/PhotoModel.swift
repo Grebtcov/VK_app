@@ -11,8 +11,8 @@ struct PhotoModel: Decodable {
     
     let sizes: [SizeModel]
     let text: String
-    let likes: LikeModel
-    let reposts: RepostModel
+    let likes: LikeModel?
+    let reposts: RepostModel?
     
     func getUrlBigPhoto() -> String {
         

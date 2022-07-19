@@ -22,8 +22,10 @@ class PhotosNetworkService {
         guard let url = urlComponents?.url else { return }
         
         NetworkService.shared.sendGetRequest(url: url) { data in
-            guard let photos = try? JSONDecoder().decode(ArrayResponse<PhotoModel>.self, from: data) else { return }
-            completion(photos.response)
+            DispatchQueue.global().async {
+                guard let photos = try? JSONDecoder().decode(ArrayResponse<PhotoModel>.self, from: data) else { return }
+                completion(photos.response)
+            }
         }
     }
     

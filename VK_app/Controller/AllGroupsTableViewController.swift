@@ -107,7 +107,7 @@ extension AllGroupsTableViewController {
             let addAction = UIContextualAction(style: .normal, title: "подписаться") { _, _, complete in
                 
                 
-                FirebaseService.shared.saveGroupUser(userId: Session.shared.userId, groupId: self.allGroupsArray[indexPath.row].id)
+//                FirebaseService.shared.saveGroupUser(userId: Session.shared.userId, groupId: self.allGroupsArray[indexPath.row].id)
                 
                 complete(true)
             }
