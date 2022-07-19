@@ -6,9 +6,6 @@
 //
 
 import UIKit
-//import Firebase
-//import FirebaseCore
-//import FirebaseFirestore
 
 class NewsTableViewController: UITableViewController {
 
@@ -18,7 +15,6 @@ class NewsTableViewController: UITableViewController {
     private let footerCellIndent = "FooterNewsCell"
     
     var news: NewsModel?
-   // var sections: [[UITableViewCell]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
